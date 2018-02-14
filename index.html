@@ -2,10 +2,24 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8" />
-    <title>Hello World</title>
+    <title>React Map Viewer</title>
+    <link rel="shortcut icon" type="image/png" href="./images/favicon.png">
+
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+	 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<!-- Calcite Maps Bootstrap -->
+	<link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-bootstrap.min-v0.6.css">
+
+	<!-- Calcite Maps -->
+	<link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-arcgis-4.x.min-v0.6.css">
   </head>
   <body>
     <div id="root"></div>
@@ -14,28 +28,32 @@
     	class Help extends React.Component {
     		render() {
     			return (
-        <div className="Help"><h1>Hello, world!</h1>
-        <p>
+<div className="Help">
+	<h1>Hello, world!</h1>
+	<p>
 Note: this page is a great way to try React but it's not suitable for production.<br/>
 It slowly compiles JSX with Babel in the browser and uses a large development build of React.
-		</p>
-		<p>
+	</p>
+	<p>
 To set up a production-ready React build environment, follow these instructions:</p>
-<ul>
-	<li><a target='blank' href='https://reactjs.org/docs/add-react-to-a-new-app.html'>Add React to a new app</a></li>
-	<li><a target='blank' href='https://reactjs.org/docs/add-react-to-an-existing-app.html'>Add React to an existing app</a></li>
+	<ul>
+		<li><a target='blank' href='https://reactjs.org/docs/add-react-to-a-new-app.html'>Add React to a new app</a></li>
+		<li><a target='blank' href='https://reactjs.org/docs/add-react-to-an-existing-app.html'>Add React to an existing app</a></li>
 	</ul>
 	<p>
-You can also use React without JSX, in which case you can remove Babel:</p>
-	<ul><li><a target='blank' href='https://reactjs.org/docs/react-without-jsx.html'>React without JSX</a></li>
-		<li><a target='blank' href='https://reactjs.org/docs/cdn-links.html'>cdn links</a></li></ul></div>
+You can also use React without JSX, in which case you can remove Babel:
+	</p>
+	<ul>
+		<li><a target='blank' href='https://reactjs.org/docs/react-without-jsx.html'>React without JSX</a></li>
+		<li><a target='blank' href='https://reactjs.org/docs/cdn-links.html'>cdn links</a></li>
+	</ul>
+</div>
     			);
     		}
     	}
 
       ReactDOM.render(
-      
-		<Help/>,
+		    <Help/>,
         document.getElementById('root')
       );
 
