@@ -1,4 +1,9 @@
 class Layout extends React.Component {
+	componentDidMount() {
+	    if(responsiveVoice.voiceSupport()) {
+	        responsiveVoice.speak('React Map Viewer');
+	    }
+	}
     render() {
     	return (
     		<div>
