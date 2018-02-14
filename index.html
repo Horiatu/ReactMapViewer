@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
+    <!-- https://codepen.io/horiatu/pen/PQJGeO?editors=0010 -->
     <meta charset="UTF-8" />
     <title>React Map Viewer</title>
     <link rel="shortcut icon" type="image/png" href="./images/favicon.png">
+
+    <link rel="stylesheet" href="./css/styles.css">
 
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
@@ -12,51 +15,46 @@
     <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-	 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-	<!-- Calcite Maps Bootstrap -->
-	<link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-bootstrap.min-v0.6.css">
+  	<!-- Calcite Maps Bootstrap -->
+  	<link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-bootstrap.min-v0.6.css">
 
-	<!-- Calcite Maps -->
-	<link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-arcgis-4.x.min-v0.6.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="text/babel">
+  	<!-- Calcite Maps -->
+  	<link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-arcgis-4.x.min-v0.6.css">
 
-    	class Help extends React.Component {
-    		render() {
-    			return (
-<div className="Help">
-	<h1>Hello, world!</h1>
-	<p>
-Note: this page is a great way to try React but it's not suitable for production.<br/>
-It slowly compiles JSX with Babel in the browser and uses a large development build of React.
-	</p>
-	<p>
-To set up a production-ready React build environment, follow these instructions:</p>
-	<ul>
-		<li><a target='blank' href='https://reactjs.org/docs/add-react-to-a-new-app.html'>Add React to a new app</a></li>
-		<li><a target='blank' href='https://reactjs.org/docs/add-react-to-an-existing-app.html'>Add React to an existing app</a></li>
-	</ul>
-	<p>
-You can also use React without JSX, in which case you can remove Babel:
-	</p>
-	<ul>
-		<li><a target='blank' href='https://reactjs.org/docs/react-without-jsx.html'>React without JSX</a></li>
-		<li><a target='blank' href='https://reactjs.org/docs/cdn-links.html'>cdn links</a></li>
-	</ul>
-</div>
-    			);
-    		}
-    	}
+    <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
 
-      ReactDOM.render(
-		    <Help/>,
-        document.getElementById('root')
-      );
-
+    <script type="text/javascript">
+      var dojoConfig = {
+        packages: [{
+          name: "bootstrap",
+          location: "https://esri.github.io/calcite-maps/dist/vendor/dojo-bootstrap"
+        },
+        {
+          name: "calcite-maps",
+          location: "https://esri.github.io/calcite-maps/dist/js/dojo"
+        }]
+      };
     </script>
+
+    <script src="https://js.arcgis.com/4.6/"></script>
+
+    <script type="text/babel" src="./js/Panel.js"></script>
+    <script type="text/babel" src="./js/Help.js"></script>
+    <script type="text/babel" src="./js/Layout.js"></script>
+
+    <script src="./js/mapActivate.js"></script>
+
+    <script>
+      if(responsiveVoice.voiceSupport()) {
+        responsiveVoice.speak('React Map Viewer');
+      }
+    </script>
+  </head>
+
+  <body class="calcite-maps calcite-nav-top app-loading">
+    <div id="root"></div>
   </body>
 </html>
