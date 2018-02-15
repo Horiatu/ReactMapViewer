@@ -1,5 +1,6 @@
 class NavBar extends React.Component {
     render() {
+    	console.log('NAVBAR', this);
     	return (
     		<nav className="navbar calcite-navbar navbar-fixed-top calcite-text-light calcite-bg-dark">
 			    <div className="calcite-title calcite-overflow-hidden">
@@ -17,4 +18,34 @@ class NavBar extends React.Component {
     		</nav>
     	);
     }
+    constructor(props) {
+    	super(props);
+    	const self = this;
+    	require([
+            "dojo/dom-class", 
+            // ArcGIS
+            "esri/WebMap",
+            "esri/views/MapView",
+
+            // Widgets
+            "esri/widgets/Search",
+
+            // Calcite Maps
+            "calcite-maps/calcitemaps-v0.5",
+            // Calcite Maps ArcGIS Support
+            "calcite-maps/calcitemaps-arcgis-support-v0.5",
+            "dojo/domReady!"
+        ], 
+        function(
+            domClass, 
+            WebMap, MapView, Search,
+            CalciteMaps, CalciteMapArcGISSupport) {
+
+	    	var searchWidget = new Search({
+                container: "searchWidgetDiv",
+                view: self.props.mapView
+            });
+	        CalciteMapArcGISSupport.setSearchExpandEvents(searchWidget);
+        });
+	}
 }

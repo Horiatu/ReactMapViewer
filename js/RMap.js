@@ -1,9 +1,12 @@
 class RMap extends React.Component {
     render() {
       	return (
+          <div>
       			<div className="calcite-map calcite-map-absolute">
       			    <div id="mapViewDiv"></div>
       			</div>
+            <NavBar mapView={this.state.mapView}/>
+          </div>
       	);
     }
   	constructor(props) {
@@ -50,7 +53,7 @@ class RMap extends React.Component {
              * Create the map, view and widgets
              * 
              ******************************************************************/
-            console.log('THIS', self);
+            console.log('RMAP', self);
 
             // Map
             const map = new WebMap({
@@ -81,11 +84,11 @@ class RMap extends React.Component {
             });
 
             // Search - add to navbar
-            var searchWidget = new Search({
-                container: "searchWidgetDiv",
-                view: mapView
-            });
-            CalciteMapArcGISSupport.setSearchExpandEvents(searchWidget);
+            // var searchWidget = new Search({
+            //     container: "searchWidgetDiv",
+            //     view: mapView
+            // });
+            // CalciteMapArcGISSupport.setSearchExpandEvents(searchWidget);
 
             // Basemaps
             var basemaps = new Basemaps({
