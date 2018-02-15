@@ -4,6 +4,12 @@ class RMap extends React.Component {
           <div>
       			<div className="calcite-map calcite-map-absolute">
       			    <div id="mapViewDiv"></div>
+
+                <div className="calcite-panels calcite-panels-right calcite-text-light calcite-bg-dark panel-group">
+                    <PanelAbout/>
+                    <PanelBasemaps/>
+                </div>
+
       			</div>
             <NavBar mapView={this.state.mapView}/>
           </div>
@@ -83,39 +89,32 @@ class RMap extends React.Component {
                 domClass.remove(document.body, "app-loading");
             });
 
-            // Search - add to navbar
-            // var searchWidget = new Search({
-            //     container: "searchWidgetDiv",
-            //     view: mapView
-            // });
-            // CalciteMapArcGISSupport.setSearchExpandEvents(searchWidget);
-
             // Basemaps
             var basemaps = new Basemaps({
                 container: "basemapGalleryDiv",
                 view: mapView
             })
             
-            // Legend
+            // Legend *
             var legendWidget = new Legend({
                 container: "legendDiv",
                 view: mapView
             });
 
-            // LayerList
+            // LayerList *
             var layerWidget = new LayerList({
                 container: "layersDiv",
                 view: mapView
             });
 
-            // Print
+            // Print *
             var printWidget = new Print({
                 container: "printDiv",
                 view: mapView,
                 printServiceUrl: "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
             });
 
-            // BasemapToggle
+            // BasemapToggle *
             var basemapToggle = new BasemapToggle({
                 view: mapView,
                 secondBasemap: "satellite"

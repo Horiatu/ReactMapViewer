@@ -3,6 +3,7 @@ class NavBar extends React.Component {
     	console.log('NAVBAR', this);
     	return (
     		<nav className="navbar calcite-navbar navbar-fixed-top calcite-text-light calcite-bg-dark">
+    			<NavMenu/>
 			    <div className="calcite-title calcite-overflow-hidden">
 			      <span className="calcite-title-main">React Map Viewer</span>
 			      <span className="calcite-title-divider hidden-xs"></span>

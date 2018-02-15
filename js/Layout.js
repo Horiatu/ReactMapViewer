@@ -7,12 +7,7 @@ class Layout extends React.Component {
 	}
     render() {
     	return (
-    		<div>
-
     		<RMap itemId="326320c9eab3489d8d17bc389ce1e023"/>
-    		<Help/>
-
-    		</div>
     	);
     }
 	componentDidMount() {
