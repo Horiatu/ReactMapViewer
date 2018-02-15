@@ -43,6 +43,19 @@ class PanelBasemaps extends Panel {
             )
         });
     }
+    componentDidMount() {
+      const self = this;
+      require([
+        "esri/widgets/BasemapGallery",
+        "dojo/domReady!"
+        ], 
+        (BasemapGallery) => 
+            new BasemapGallery({
+              container: "basemapGalleryDiv",
+              view: self.props.mapView
+            })
+        );
+  }
 }
 class PanelLegend extends Panel {
     render() {
@@ -52,36 +65,19 @@ class PanelLegend extends Panel {
             )
         });
     }
-    constructor(props) {
-      super(props);
+    componentDidMount() {
       const self = this;
       require([
-            "dojo/dom-class", 
-            // ArcGIS
-            "esri/WebMap",
-            "esri/views/MapView",
-
-            // Widgets
-            "esri/widgets/Legend",
-
-            // Calcite Maps
-            "calcite-maps/calcitemaps-v0.5",
-            // Calcite Maps ArcGIS Support
-            "calcite-maps/calcitemaps-arcgis-support-v0.5",
-            "dojo/domReady!"
+        "esri/widgets/Legend",
+        "dojo/domReady!"
         ], 
-        function(
-            domClass, 
-            WebMap, MapView, Legend,
-            CalciteMaps, CalciteMapArcGISSupport) {
-
-            var legendWidget = new Legend({
+        (Legend) => 
+            new Legend({
               container: "legendDiv",
               view: self.props.mapView
-            });
-        });
+            })
+        );
   }
-
 }
 class PanelLayers extends Panel {
     render() {
@@ -91,6 +87,19 @@ class PanelLayers extends Panel {
             )
         });
     }
+    componentDidMount() {
+      const self = this;
+      require([
+        "esri/widgets/LayerList",
+        "dojo/domReady!"
+        ], 
+        (LayerList) => 
+            new LayerList({
+              container: "layersDiv",
+              view: self.props.mapView
+            })
+        );
+  }
 }
 class PanelPrint extends Panel {
     render() {
@@ -100,4 +109,18 @@ class PanelPrint extends Panel {
             )
         });
     }
+    componentDidMount() {
+      const self = this;
+      require([
+        "esri/widgets/Print",
+        "dojo/domReady!"
+        ], 
+        (Print) => 
+            new Print({
+                container: "printDiv",
+                view: self.props.mapView,
+                printServiceUrl: "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+            })
+        );
+  }
 }

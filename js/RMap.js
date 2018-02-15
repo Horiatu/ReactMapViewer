@@ -34,9 +34,6 @@ class RMap extends React.Component {
             "esri/views/MapView",
 
             // Widgets
-            "esri/widgets/BasemapGallery",
-            "esri/widgets/LayerList",
-            "esri/widgets/Print",
             "esri/widgets/BasemapToggle",
             "esri/widgets/ScaleBar",
 
@@ -52,8 +49,7 @@ class RMap extends React.Component {
         ], 
         function(
             domClass, 
-            WebMap, MapView, Basemaps, 
-            LayerList, 
+            WebMap, MapView, 
             Print, BasemapToggle, ScaleBar, Collapse, Dropdown, 
             CalciteMaps, CalciteMapArcGISSupport) {
 
@@ -90,25 +86,6 @@ class RMap extends React.Component {
             mapView.then(function(){
                 CalciteMapArcGISSupport.setPopupPanelSync(mapView);
                 domClass.remove(document.body, "app-loading");
-            });
-
-            // Basemaps
-            var basemaps = new Basemaps({
-                container: "basemapGalleryDiv",
-                view: mapView
-            })
-            
-            // LayerList *
-            var layerWidget = new LayerList({
-                container: "layersDiv",
-                view: mapView
-            });
-
-            // Print *
-            var printWidget = new Print({
-                container: "printDiv",
-                view: mapView,
-                printServiceUrl: "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
             });
 
             // BasemapToggle *
