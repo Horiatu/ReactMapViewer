@@ -1,13 +1,15 @@
 class Panel extends React.Component {
-    renderContent(name, content) {
+    renderContent(name, content, title) {
         console.log('PANEL', this);
-        // let name = this.props.name;
+        title=(title && title !== undefined) ? title : name;
+
         return (
             <div id={"panel"+name} className="panel collapse">
                 <div id={"heading"+name} className="panel-heading">
                     <div className="panel-title">
                         <a className="panel-toggle collapsed" role="button" data-toggle="collapse" href={"#collapse"+name}
-                          aria-expanded="false" aria-controls={"collapse"+name}><span className="glyphicon glyphicon-th-large" aria-hidden="true"></span><span className="panel-label">{name}</span>
+                          aria-expanded="false" aria-controls={"collapse"+name}><span className="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                          <span className="panel-label">{title}</span>
                         </a>
                         <a className="panel-close" role="button" data-toggle="collapse" tabIndex="0" href={"#panel"+name}><span className="esri-icon esri-icon-close" aria-hidden="true"></span></a>
                     </div>
