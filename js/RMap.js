@@ -7,10 +7,10 @@ class RMap extends React.Component {
 
                 <div className="calcite-panels calcite-panels-right calcite-text-light calcite-bg-dark panel-group">
                     <PanelAbout/>
-                    <PanelBasemaps/>
-                    <PanelLegend/>
-                    <PanelLayers/>
-                    <PanelPrint/>
+                    <PanelBasemaps mapView={this.state.mapView}/>
+                    <PanelLegend mapView={this.state.mapView}/>
+                    <PanelLayers mapView={this.state.mapView}/>
+                    <PanelPrint mapView={this.state.mapView}/>
                     <PanelAdvancedMenu/>
                 </div>
 
@@ -35,8 +35,6 @@ class RMap extends React.Component {
 
             // Widgets
             "esri/widgets/BasemapGallery",
-            "esri/widgets/Search",
-            "esri/widgets/Legend",
             "esri/widgets/LayerList",
             "esri/widgets/Print",
             "esri/widgets/BasemapToggle",
@@ -54,7 +52,8 @@ class RMap extends React.Component {
         ], 
         function(
             domClass, 
-            WebMap, MapView, Basemaps, Search, Legend, LayerList, 
+            WebMap, MapView, Basemaps, 
+            LayerList, 
             Print, BasemapToggle, ScaleBar, Collapse, Dropdown, 
             CalciteMaps, CalciteMapArcGISSupport) {
 
@@ -99,12 +98,6 @@ class RMap extends React.Component {
                 view: mapView
             })
             
-            // Legend *
-            var legendWidget = new Legend({
-                container: "legendDiv",
-                view: mapView
-            });
-
             // LayerList *
             var layerWidget = new LayerList({
                 container: "layersDiv",

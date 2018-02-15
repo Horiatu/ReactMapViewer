@@ -52,6 +52,36 @@ class PanelLegend extends Panel {
             )
         });
     }
+    constructor(props) {
+      super(props);
+      const self = this;
+      require([
+            "dojo/dom-class", 
+            // ArcGIS
+            "esri/WebMap",
+            "esri/views/MapView",
+
+            // Widgets
+            "esri/widgets/Legend",
+
+            // Calcite Maps
+            "calcite-maps/calcitemaps-v0.5",
+            // Calcite Maps ArcGIS Support
+            "calcite-maps/calcitemaps-arcgis-support-v0.5",
+            "dojo/domReady!"
+        ], 
+        function(
+            domClass, 
+            WebMap, MapView, Legend,
+            CalciteMaps, CalciteMapArcGISSupport) {
+
+            var legendWidget = new Legend({
+              container: "legendDiv",
+              view: self.props.mapView
+            });
+        });
+  }
+
 }
 class PanelLayers extends Panel {
     render() {
