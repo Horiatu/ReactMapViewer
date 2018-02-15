@@ -22,10 +22,7 @@ class Layout extends React.Component {
 			    </ul>
     		</nav>
 			
-			<div className="calcite-map calcite-map-absolute">
-			    <div id="mapViewDiv"></div>
-			</div>
-
+    		<RMap/>
     		<Help/>
 
     		</div>
