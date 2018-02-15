@@ -17,8 +17,8 @@ class NavMenu extends React.Component {
 		        <li><a role="menuitem" tabIndex="0" href="#" data-target="#panelLegend" aria-haspopup="true"><span className="glyphicon glyphicon-list-alt"></span> Legend</a></li>
 		        <li><a role="menuitem" tabIndex="0" href="#" data-target="#panelLayers" aria-haspopup="true"><span className="glyphicon glyphicon-list"></span> Layers</a></li>
 		        <li><a role="menuitem" tabIndex="0" href="#" data-target="#panelPrint" aria-haspopup="true"><span className="glyphicon glyphicon-print"></span> Print</a></li>
-		        <li><a role="menuitem" tabIndex="0" href="#" data-target="#panelTest" aria-haspopup="true">
-		          <span className="glyphicon glyphicon-star"></span> Menu</a></li>
+		        <li><a role="menuitem" tabIndex="0" href="#" data-target="#panelAdvancedMenu" aria-haspopup="true">
+		          <span className="glyphicon glyphicon-star"></span> Advance Menu</a></li>
 		        <li><a role="menuitem" tabIndex="0" href="#" id="calciteToggleNavbar" aria-haspopup="true"><span className="glyphicon glyphicon-fullscreen"></span> Full Map</a></li>
 		      </ul>
 		    </div>

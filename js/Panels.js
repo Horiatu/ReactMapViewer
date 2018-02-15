@@ -42,3 +42,30 @@ class PanelBasemaps extends Panel {
         });
     }
 }
+class PanelLegend extends Panel {
+    render() {
+        return super.renderContent("Legend", function() {
+            return (
+                <div id="legendDiv"></div>
+            )
+        });
+    }
+}
+class PanelLayers extends Panel {
+    render() {
+        return super.renderContent("Layers", function() {
+            return (
+                <div id="layersDiv"></div>
+            )
+        });
+    }
+}
+class PanelPrint extends Panel {
+    render() {
+        return super.renderContent("Print", function() {
+            return (
+                <div id="printDiv"></div>
+            )
+        });
+    }
+}

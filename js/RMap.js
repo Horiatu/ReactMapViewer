@@ -8,6 +8,10 @@ class RMap extends React.Component {
                 <div className="calcite-panels calcite-panels-right calcite-text-light calcite-bg-dark panel-group">
                     <PanelAbout/>
                     <PanelBasemaps/>
+                    <PanelLegend/>
+                    <PanelLayers/>
+                    <PanelPrint/>
+                    <PanelAdvancedMenu/>
                 </div>
 
       			</div>
