@@ -46,6 +46,6 @@ class PanelAdvancedMenu extends Panel {
   </div>
   </div>
             )
-        }, "glyphicon-star", "Advanced Menu");
+        }, "glyphicon-menu-hamburger", "Advanced Menu");
     }
 }
