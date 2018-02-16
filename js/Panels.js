@@ -1,14 +1,15 @@
 class Panel extends React.Component {
-    renderContent(name, content, title) {
+    renderContent(name, content, icon, title) {
         console.log('PANEL', this);
         title=(title && title !== undefined) ? title : name;
-
+        icon = (icon && icon !== undefined) ? icon : "glyphicon-th-large";
         return (
             <div id={"panel"+name} className="panel collapse">
                 <div id={"heading"+name} className="panel-heading">
                     <div className="panel-title">
                         <a className="panel-toggle collapsed" role="button" data-toggle="collapse" href={"#collapse"+name}
-                          aria-expanded="false" aria-controls={"collapse"+name}><span className="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                          aria-expanded="false" aria-controls={"collapse"+name}>
+                          <span className={"glyphicon "+icon} aria-hidden="true"></span>
                           <span className="panel-label">{title}</span>
                         </a>
                         <a className="panel-close" role="button" data-toggle="collapse" tabIndex="0" href={"#panel"+name}><span className="esri-icon esri-icon-close" aria-hidden="true"></span></a>
@@ -32,7 +33,7 @@ class PanelAbout extends Panel {
             return (
                 <Help/>
             )
-        });
+        }, "glyphicon-file");
     }
 }
 class PanelBasemaps extends Panel {
@@ -63,7 +64,7 @@ class PanelLegend extends Panel {
             return (
                 <div id="legendDiv"></div>
             )
-        });
+        }, "glyphicon-list-alt");
     }
     componentDidMount() {
       const self = this;
@@ -85,7 +86,7 @@ class PanelLayers extends Panel {
             return (
                 <div id="layersDiv"></div>
             )
-        });
+        }, "glyphicon-list");
     }
     componentDidMount() {
       const self = this;
@@ -107,7 +108,7 @@ class PanelPrint extends Panel {
             return (
                 <div id="printDiv"></div>
             )
-        });
+        }, "glyphicon-print");
     }
     componentDidMount() {
       const self = this;

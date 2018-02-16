@@ -73,7 +73,7 @@ class RMap extends React.Component {
                 map: map,
                 padding: {
                     top: 50,
-                    bottom: 0
+                    bottom: 10
                 }
             });
 
