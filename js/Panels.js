@@ -58,28 +58,6 @@ class PanelBasemaps extends Panel {
         );
   }
 }
-class PanelLegend extends Panel {
-    render() {
-        return super.renderContent("Legend", function() {
-            return (
-                <div id="legendDiv"></div>
-            )
-        }, "glyphicon-list-alt");
-    }
-    componentDidMount() {
-      const self = this;
-      require([
-        "esri/widgets/Legend",
-        "dojo/domReady!"
-        ], 
-        (Legend) => 
-            new Legend({
-              container: "legendDiv",
-              view: self.props.mapView
-            })
-        );
-  }
-}
 class PanelLayers extends Panel {
     render() {
         return super.renderContent("Layers", function() {

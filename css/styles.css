@@ -25,6 +25,13 @@ body {
   height: 100%;
 }
 
+.esri-legend__symbol {
+    background-color: gray;
+}
+
+.esri-legend__layer-cell--info{
+    width:100%;
+}
 .panel-body {
     overflow-y: hidden;
     overflow-y: auto;
