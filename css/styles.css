@@ -1,12 +1,12 @@
 @font-face {
-  font-family: 'icomoon';
-  src:  url('../icomoon/fonts/icomoon.eot?feqs76');
-  src:  url('../icomoon/fonts/icomoon.eot?feqs76#iefix') format('embedded-opentype'),
+    font-family: 'icomoon';
+    src:  url('../icomoon/fonts/icomoon.eot?feqs76');
+    src:  url('../icomoon/fonts/icomoon.eot?feqs76#iefix') format('embedded-opentype'),
     url('../icomoon/fonts/icomoon.ttf?feqs76') format('truetype'),
     url('../icomoon/fonts/icomoon.woff?feqs76') format('woff'),
     url('../icomoon/fonts/icomoon.svg?feqs76#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-weight: normal;
+    font-style: normal;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed|Ubuntu+Mono');
@@ -32,9 +32,22 @@ body {
 .esri-legend__layer-cell--info{
     width:100%;
 }
+
 .panel-body {
     overflow-y: hidden;
     overflow-y: auto;
+    margin: 4px;
+}
+
+.esri-legend__service-label,
+.esri-legend__layer-caption {
+    padding: 6px;
+    margin: 0;
+}
+
+.esri-legend__service {
+    padding: 0; 
+    border-bottom: none; 
 }
 
 .clearfix:after,
