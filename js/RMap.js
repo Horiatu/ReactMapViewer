@@ -58,7 +58,7 @@ class RMap extends React.Component {
              * Create the map, view and widgets
              * 
              ******************************************************************/
-            console.log('RMAP', self);
+            // console.log('RMAP', self);
 
             // Map
             const map = new WebMap({
