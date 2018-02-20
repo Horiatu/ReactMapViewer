@@ -1,6 +1,6 @@
 class Panel extends React.Component {
     renderContent(name, content, icon, title) {
-        console.log('PANEL', this);
+        // console.log('PANEL', this);
         title=(title && title !== undefined) ? title : name;
         icon = (icon && icon !== undefined) ? icon : "glyphicon-th-large";
         return (
@@ -36,6 +36,7 @@ class PanelAbout extends Panel {
         }, "glyphicon-file");
     }
 }
+
 class PanelBasemaps extends Panel {
     render() {
         return super.renderContent("Basemaps", function() {
@@ -58,28 +59,7 @@ class PanelBasemaps extends Panel {
         );
   }
 }
-class PanelLayers extends Panel {
-    render() {
-        return super.renderContent("Layers", function() {
-            return (
-                <div id="layersDiv"></div>
-            )
-        }, "glyphicon-list");
-    }
-    componentDidMount() {
-      const self = this;
-      require([
-        "esri/widgets/LayerList",
-        "dojo/domReady!"
-        ], 
-        (LayerList) => 
-            new LayerList({
-              container: "layersDiv",
-              view: self.props.mapView
-            })
-        );
-  }
-}
+
 class PanelPrint extends Panel {
     render() {
         return super.renderContent("Print", function() {

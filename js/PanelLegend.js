@@ -11,7 +11,8 @@ class PanelLegend extends Panel {
         super(props);
       const self = this;
       require([
-        "esri/widgets/Legend", "dojo/query", "dojo/dom-attr", "dojo/dom-style", 
+        "esri/widgets/Legend", 
+        "dojo/query", "dojo/dom-attr", "dojo/dom-style", 
         "dojo/domReady!"
         ], 
         (Legend, query, domAttr, domStyle) => {

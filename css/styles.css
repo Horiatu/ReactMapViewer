@@ -25,6 +25,20 @@ body {
   height: 100%;
 }
 
+.esri-layer-list__item-label, 
+.esri-layer-list__item-container {
+  padding: 4px;
+}
+
+.esri-legend__layer-body {
+    margin-left: 0; 
+}
+
+.esri-legend__layer-row {
+    display: block;
+    padding-left: 7px;
+}
+
 .esri-legend__symbol {
     background-color: gray;
 }
