@@ -16,7 +16,6 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-    console.log('fetch event',event);
     event.respondWith(
         fetch(event.request).then(function(response) {
             console.log('fetch response', response.status, response);
