@@ -29,9 +29,22 @@ class NavBar extends React.Component {
         function(Search, CalciteMapArcGISSupport) {
 	    	const searchWidget = new Search({
                 container: "searchWidgetDiv",
-                view: self.props.mapView
+                view: self.props.mapView,
+                locationEnabled : true
             });
 	        CalciteMapArcGISSupport.setSearchExpandEvents(searchWidget);
+            searchWidget.on("search-focus", function(ev){
+                // console.log('search focus', ev, searchWidget);
+                responsiveVoice.speak(ev.target.allPlaceholder);
+            })
+            searchWidget.on("search-start", function(ev){
+                // console.log("Search started", ev);
+                responsiveVoice.speak('Search');
+            });
+            searchWidget.on("search-complete", function(ev){
+                // console.log('Search complete', ev, searchWidget);
+                responsiveVoice.speak(ev.results[0].results[0].name);
+            })
         });
 	}
 }

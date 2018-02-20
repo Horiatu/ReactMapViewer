@@ -29,11 +29,11 @@ class PanelLegend extends Panel {
                                 var node = mutation.addedNodes[i];
                                 if(domStyle.get(node, 'display') !== 'none') {
                                     const serviceLabels = query('.esri-legend__service-label, .esri-legend__layer-caption, .esri-legend__layer-row');
-                                    console.log(node, serviceLabels);
+                                    // console.log(node, serviceLabels);
                                     serviceLabels.forEach(label => {
                                         domAttr.set(label, 'tabindex', 0);
                                         domAttr.set(label, 'onfocus', 'responsiveVoice.speak("'+label.innerText+'")');
-                                        console.log(label)
+                                        // console.log(label)
                                     });
                                 }
                             }
