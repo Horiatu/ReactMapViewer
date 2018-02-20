@@ -6,7 +6,6 @@ var urlsToCache = [
 
 self.addEventListener('install', function(event) {
     event.waitUntil(
-        console.log('SW Install');
         caches.open(CACHE_NAME).then(function(cache) {
                 caches.delete(CACHE_NAME).then(function() {
                     console.log('Opened cache: ', CACHE_NAME, cache.keys());
