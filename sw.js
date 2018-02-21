@@ -24,13 +24,13 @@ self.addEventListener('fetch', function(event) {
     event.respondWith(
         fetch(event.request).then(
             function(response) {
-                console.log('fetch response', response.status, response);
+                // console.log('fetch response', response.status, response);
                 if(response && response.status <= 400) {
                     var responseToCache = response.clone();
 
                     caches.open(CACHE_NAME).then(
                         function(cache) {
-                            console.log("Add to Cache", event.request, responseToCache);
+                            // console.log("Add to Cache", event.request, responseToCache);
 
                             cache.put(event.request, responseToCache);
                         },

@@ -11,7 +11,7 @@ class RMap extends React.Component {
                     <PanelLegend mapView={this.state.mapView}/>
                     <PanelLayers mapView={this.state.mapView}/>
                     <PanelPrint mapView={this.state.mapView}/>
-                    <PanelAdvancedMenu/>
+                    // <PanelAdvancedMenu/>
                 </div>
 
       			</div>
@@ -19,6 +19,7 @@ class RMap extends React.Component {
           </div>
       	);
     }
+
   	constructor(props) {
         super(props);
         this.state = {
@@ -101,5 +102,5 @@ class RMap extends React.Component {
             });
             mapView.ui.add(scaleBar, "bottom-left");
         });
-	  }
+	}
 }
