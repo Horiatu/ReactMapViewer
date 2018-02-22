@@ -1,7 +1,7 @@
 var CACHE_NAME = 'ReactMapViewer-cache-v1';
 var urlsToCache = [
-  // './',
-  '../css/styles.css'
+  './',
+  './css/styles.css'
 ];
 
 self.addEventListener('install', function(event) {
