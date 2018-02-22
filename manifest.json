@@ -1,6 +1,6 @@
 {
-  "short_name": "ReactMapViewer",
-  "name": "WCAG React Map Viewer",
+  "short_name": "React Map Viewer",
+  "name": "React Map Viewer",
   "icons": [
     {
       "src": "./images/shortcutsicons/accessibility.114.png",
