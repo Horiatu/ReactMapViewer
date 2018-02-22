@@ -65,6 +65,7 @@ self.addEventListener('fetch', function(event) {
             }, 
             function(reason) {
                 console.log('Error - Featch:', reason);
+                return cache.match('offline.html');
             }
         )
     );
