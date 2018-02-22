@@ -59,19 +59,22 @@
     <link rel="stylesheet" href="./css/styles.css">
 
     <script type="text/javascript">
-      var dojoConfig = {
-        packages: [{
-          name: "bootstrap",
-          location: "https://esri.github.io/calcite-maps/dist/vendor/dojo-bootstrap"
-        },
-        {
-          name: "calcite-maps",
-          location: "https://esri.github.io/calcite-maps/dist/js/dojo"
-        }]
-      };
+        var dojoConfig = {
+            packages: [{
+                name: "bootstrap",
+                location: "https://esri.github.io/calcite-maps/dist/vendor/dojo-bootstrap"
+            },
+            {
+                name: "calcite-maps",
+                location: "https://esri.github.io/calcite-maps/dist/js/dojo"
+            }],
+            paths: {
+                jquery: "./lib/jquery-1.12.4.min.js"
+            }
+        };
     </script>
 
-    <script src="https://js.arcgis.com/4.6/"></script>
+    <script src="./lib/arcgis.dojo-4.6.js"></script>
 
     <script type="text/babel" src="./js/RMap.js"></script>
     <script type="text/babel" src="./js/NavMenu.js"></script>
