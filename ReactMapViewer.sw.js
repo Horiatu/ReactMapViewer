@@ -40,7 +40,7 @@ self.addEventListener('fetch', function(event) {
                 else 
                 { 
                     // error: get from cache
-                    caches.open(CACHE_NAME).then(function(cache) {
+                    caches.open(CACHE_NAME).then((cache) => {
 
                         try {
                             caches.match(event.request).then(
@@ -58,14 +58,18 @@ self.addEventListener('fetch', function(event) {
                             );
                         } catch (ex) {
                             console.log('Error - Get from Cache (1):', ex.message);
-                            return cache.match('offline.html');
+                            caches.open(CACHE_NAME).then((cache) => {
+                                return cache.match('offline.html');
+                            });
                         }
                     });
                 }
             }, 
             function(reason) {
                 console.log('Error - Featch:', reason);
-                return cache.match('offline.html');
+                caches.open(CACHE_NAME).then((cache) => {
+                    return cache.match('offline.html');
+                });
             }
         )
     );
