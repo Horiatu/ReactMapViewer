@@ -8,11 +8,13 @@ var urlsToCache = [
 self.addEventListener('install', function(event) {
     event.waitUntil(
         caches.open(CACHE_NAME).then(
-            function(cache) {
-                caches.delete(CACHE_NAME).then(function() {
+            (cache) => {
+                // caches.delete(CACHE_NAME).then((obj) => {
+                //     console.log('Deleted cache (install)', CACHE_NAME, obj, cache.keys());
+                    cache.addAll(urlsToCache).then(() => {
                     console.log('Opened cache (install)', CACHE_NAME, cache.keys());
+                    return cache;
                 });
-                return cache.addAll(urlsToCache);
             },
             function(reason) {
                 console.log('Error - Opened cache (install)', CACHE_NAME, reason);
@@ -30,14 +32,9 @@ self.addEventListener('fetch', function(event) {
                     var responseToCache = response.clone();
 
                     caches.open(CACHE_NAME).then(
-                        function(cache) {
-                            // console.log("Add to Cache", event.request, responseToCache);
-
-                            cache.put(event.request, responseToCache);
-                        },
-                        function(reason) {
-                            console.log("Error - Add to Cache", reason);
-                        });
+                        (cache) => cache.put(event.request, responseToCache),
+                        (reason) => console.log("Error - Add to Cache", reason)
+                    );
                     return response;
                 }
                 else 
@@ -47,18 +44,20 @@ self.addEventListener('fetch', function(event) {
 
                         try {
                             caches.match(event.request).then(
-                                function(response) {
+                                (response) => {
                                     // Cache hit - return response
                                     if (response) {
-                                      console.log("Get from Cache", event.request, response);
-                                      return response;
+                                          console.log("Get from Cache:", event.request);
+                                          return response;
                                     }
-                                }, function(reason) {
-                                    console.log('Error - Get from Cache', reason);
+                                }, 
+                                (reason) => {
+                                    console.log('Error - Get from Cache:', reason);
                                     return cache.match('offline.html');
                                 }
                             );
                         } catch (ex) {
+                            console.log('Error - Get from Cache (1):', ex.message);
                             return cache.match('offline.html');
                         }
                     });
