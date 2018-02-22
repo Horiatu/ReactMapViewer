@@ -39,7 +39,8 @@ self.addEventListener('fetch', function(event) {
                         });
                     return response;
                 }
-                else { 
+                else 
+                { 
                     // error: get from cache
                     caches.open(CACHE_NAME).then(function(cache) {
 
@@ -59,7 +60,7 @@ self.addEventListener('fetch', function(event) {
                 }
             }, 
             function(reason) {
-                console.log('Error - Featch', reason);
+                console.log('Error - Featch:', reason);
             }
         )
     );
