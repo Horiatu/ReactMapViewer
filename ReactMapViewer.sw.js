@@ -58,9 +58,7 @@ self.addEventListener('fetch', function(event) {
                             );
                         } catch (ex) {
                             console.log('Error - Get from Cache (1):', ex.message);
-                            caches.open(CACHE_NAME).then((cache) => {
-                                return cache.match('offline.html');
-                            });
+                            return cache.match('offline.html');
                         }
                     });
                 }
