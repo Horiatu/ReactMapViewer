@@ -40,36 +40,57 @@ self.addEventListener('fetch', function(event) {
                 else 
                 { 
                     // error: get from cache
-                    caches.open(CACHE_NAME).then((cache) => {
+                    getFromCache(event.request);
+                    // caches.open(CACHE_NAME).then((cache) => {
 
-                        try {
-                            caches.match(event.request).then(
-                                (response) => {
-                                    // Cache hit - return response
-                                    if (response) {
-                                          console.log("Get from Cache:", event.request);
-                                          return response;
-                                    }
-                                }, 
-                                (reason) => {
-                                    console.log('Error - Get from Cache:', reason);
-                                    return cache.match('offline.html');
-                                }
-                            );
-                        } catch (ex) {
-                            console.log('Error - Get from Cache (1):', ex.message);
-                            return cache.match('offline.html');
-                        }
-                    });
+                    //     try {
+                    //         caches.match(event.request).then(
+                    //             (response) => {
+                    //                 // Cache hit - return response
+                    //                 if (response) {
+                    //                       console.log("Get from Cache:", event.request);
+                    //                       return response;
+                    //                 }
+                    //             }, 
+                    //             (reason) => {
+                    //                 console.log('Error - Get from Cache:', reason);
+                    //                 return cache.match('offline.html');
+                    //             }
+                    //         );
+                    //     } catch (ex) {
+                    //         console.log('Error - Get from Cache (1):', ex.message);
+                    //         return cache.match('offline.html');
+                    //     }
+                    // });
                 }
             }, 
             function(reason) {
                 console.log('Error - Featch:', reason);
-                caches.open(CACHE_NAME).then((cache) => {
-                    return cache.match('offline.html');
-                });
+                getFromCache(event.request);
             }
         )
     );
 });
 
+getFromCache:function(request) {
+    caches.open(CACHE_NAME).then((cache) => {
+        try {
+            caches.match(request).then(
+                (response) => {
+                    // Cache hit - return response
+                    if (response) {
+                          console.log("Get from Cache:", request);
+                          return response;
+                    }
+                }, 
+                (reason) => {
+                    console.log('Error - Get from Cache:', reason);
+                    return cache.match('offline.html');
+                }
+            );
+        } catch (ex) {
+            console.log('Error - Get from Cache (1):', ex.message);
+            return cache.match('offline.html');
+        }
+    });    
+}
