@@ -11,7 +11,7 @@ class RMap extends React.Component {
                     <PanelLegend mapView={this.state.mapView}/>
                     <PanelLayers mapView={this.state.mapView}/>
                     <PanelPrint mapView={this.state.mapView}/>
-                    // <PanelAdvancedMenu/>
+                    <PanelAdvancedMenu/>
                 </div>
 
       			</div>
