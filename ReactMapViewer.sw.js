@@ -72,7 +72,7 @@ self.addEventListener('fetch', function(event) {
     );
 });
 
-getFromCache:function(request) {
+function getFromCache(request) {
     caches.open(CACHE_NAME).then((cache) => {
         try {
             caches.match(request).then(
@@ -93,4 +93,4 @@ getFromCache:function(request) {
             return cache.match('offline.html');
         }
     });    
-}
+};
