@@ -45,18 +45,22 @@ self.addEventListener('fetch', function(event) {
                     // error: get from cache
                     caches.open(CACHE_NAME).then(function(cache) {
 
-                        caches.match(event.request).then(
-                            function(response) {
-                                // Cache hit - return response
-                                if (response) {
-                                  console.log("Get from Cache", event.request, response);
-                                  return response;
+                        try {
+                            caches.match(event.request).then(
+                                function(response) {
+                                    // Cache hit - return response
+                                    if (response) {
+                                      console.log("Get from Cache", event.request, response);
+                                      return response;
+                                    }
+                                }, function(reason) {
+                                    console.log('Error - Get from Cache', reason);
+                                    return cache.match('offline.html');
                                 }
-                            }, function(reason) {
-                                console.log('Error - Get from Cache', reason);
-                                return cache.match('offline.html');
-                            }
-                        );
+                            );
+                        } catch (ex) {
+                            return cache.match('offline.html');
+                        }
                     });
                 }
             }, 
