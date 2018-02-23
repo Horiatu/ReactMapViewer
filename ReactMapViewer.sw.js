@@ -67,7 +67,7 @@ self.addEventListener('install', (event) => {
             // and it is not possible to determine whether an opaque response represents a success or failure
             // (https://github.com/whatwg/fetch/issues/14).
             const request = new Request(url, {mode: 'no-cors'});
-            return fetch(request).then((response) +> {
+            return fetch(request).then((response) => {
                 if (response.status >= 400) {
                     throw new Error('request for ' + urlToPrefetch +
                       ' failed with status ' + response.statusText);
