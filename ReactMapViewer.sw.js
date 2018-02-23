@@ -6,24 +6,22 @@ const CACHES = {
 };
 
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', (event) => {
     const now = Date.now();
 
     const urlsToCache = [
         './',
+        './index.html',      
+        './offline.html',
         './images/logo.png',
         './images/flag.CA.22.png',
-        './index.html',      
+        './images/flag.US.22.png',
+        './images/flag.FR.22.png',
         './css/styles.css',
         './css/jquery-ui.min.css',
         './lib/jquery-1.12.4.min.js',
         './lib/jquery-ui.min.js',
-        '//unpkg.com/react@16/umd/react.development.js',
-        '//unpkg.com/react-dom@16/umd/react-dom.development.js',
-        '//unpkg.com/babel-standalone@6.15.0/babel.min.js',
-        '//code.responsivevoice.org/responsivevoice.js',
         './lib/arcgis.dojo-4.6.js',
-        '//js.arcgis.com/4.6/esri/themes/base/icons/fonts/CalciteWebCoreIcons.ttf?cu4poq',
         './js/RMap.js',
         './js/NavMenu.js',
         './js/NavBar.js',
@@ -33,6 +31,11 @@ self.addEventListener('install', function(event) {
         './js/PanelAdvancedMenu.js',
         './js/Help.js',
         './js/Layout.js',
+        '//unpkg.com/react@16/umd/react.development.js',
+        '//unpkg.com/react-dom@16/umd/react-dom.development.js',
+        '//unpkg.com/babel-standalone@6.15.0/babel.min.js',
+        '//code.responsivevoice.org/responsivevoice.js',
+        '//js.arcgis.com/4.6/esri/themes/base/icons/fonts/CalciteWebCoreIcons.ttf?cu4poq',
         // 'https://www.arcgis.com/sharing/rest/portals/self?f=json&culture=en',
         // 'https://js.arcgis.com/4.6/esri/core/workers/worker.js',
         // 'https://js.arcgis.com/4.6/esri/themes/base/fonts/avenir-next/Avenir_Next_W00_400.woff2',
@@ -40,8 +43,8 @@ self.addEventListener('install', function(event) {
     ];
 
     event.waitUntil(
-        caches.open(CACHES.prefetch).then(function(cache) {
-            const cachePromises = urlsToCache.map(function(urlToPrefetch) {
+        caches.open(CACHES.prefetch).then((cache) => {
+            const cachePromises = urlsToCache.map((urlToPrefetch) => {
             // This constructs a new URL object using the service worker's script location as the base
             // for relative URLs.
             const url = new URL(urlToPrefetch, location.href);
@@ -64,7 +67,7 @@ self.addEventListener('install', function(event) {
             // and it is not possible to determine whether an opaque response represents a success or failure
             // (https://github.com/whatwg/fetch/issues/14).
             const request = new Request(url, {mode: 'no-cors'});
-            return fetch(request).then(function(response) {
+            return fetch(request).then((response) +> {
                 if (response.status >= 400) {
                     throw new Error('request for ' + urlToPrefetch +
                       ' failed with status ' + response.statusText);
@@ -72,32 +75,32 @@ self.addEventListener('install', function(event) {
 
                 // Use the original URL without the cache-busting parameter as the key for cache.put().
                 return cache.put(urlToPrefetch, response);
-                }).catch(function(error) {
+                }).catch((error) => {
                     console.error('Not caching:',urlToPrefetch, url, error);
                 });
             });
 
-            return Promise.all(cachePromises).then(function() {
+            return Promise.all(cachePromises).then(() => {
                 console.log('Pre-fetching complete.');
             });
-        }).catch(function(error) {
+        }).catch((error) => {
             console.error('Pre-fetching failed:', error);
         })
     );
 });
 
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', (event) => {
     // Delete all caches that aren't named in CURRENT_CACHES.
     // While there is only one cache in this example, the same logic will handle the case where
     // there are multiple versioned caches.
-    const expectedCacheNames = Object.keys(CACHES).map(function(key) {
+    const expectedCacheNames = Object.keys(CACHES).map((key) => {
         return CACHES[key];
     });
 
     event.waitUntil(
-        caches.keys().then(function(cacheNames) {
+        caches.keys().then((cacheNames) => {
             return Promise.all(
-                cacheNames.map(function(cacheName) {
+                cacheNames.map((cacheName) => {
                     if (expectedCacheNames.indexOf(cacheName) === -1) {
                         // If this cache name isn't present in the array of "expected" cache names, then delete it.
                         console.log('Deleting out of date cache:', cacheName);
@@ -109,15 +112,15 @@ self.addEventListener('activate', function(event) {
     );
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', (event) => {
     // console.log('Handling fetch event for', event.request.url);
 
     event.respondWith(
         // caches.match() will look for a cache entry in all of the caches available to the service worker.
         // It's an alternative to first opening a specific named cache and then matching on that.
-        caches.match(event.request).then(function(response) {
+        caches.match(event.request).then((response) => {
         if (response) {
-            // console.log('Found response in cache:', response);
+            console.log('Found response in cache:', response);
 
             return response;
         }
@@ -126,18 +129,21 @@ self.addEventListener('fetch', function(event) {
 
         // event.request will always have the proper mode set ('cors, 'no-cors', etc.) so we don't
         // have to hardcode 'no-cors' like we do when fetch()ing in the install handler.
-        return fetch(event.request).then(function(response) {
+        return fetch(event.request).then((response) => {
             if(response.url !== '' || response.type !== 'opaque')
                 console.log('Response from network is:', response);
 
             return response;
-        }).catch(function(error) {
+        }).catch((error) => {
             // This catch() will handle exceptions thrown from the fetch() operation.
             // Note that a HTTP error response (e.g. 404) will NOT trigger an exception.
             // It will return a normal response object that has the appropriate error code set.
             console.error('Fetching failed:', error);
+            caches.open(CACHES.prefetch).then((cache) => {
+                return cache.match('offline.html');
+            });
 
-            throw error;
+            // throw error;
         });
     }));
 });

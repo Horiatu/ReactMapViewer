@@ -25,6 +25,10 @@ body {
   height: 100%;
 }
 
+.esri-print__exported-file--error {
+    color: #ffa500;
+}
+
 .esri-layer-list__item-label, 
 .esri-layer-list__item-container {
   padding: 4px;
