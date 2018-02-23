@@ -29,7 +29,7 @@ self.addEventListener('install', (event) => {
         './js/_panelLegend.js',
         './js/_panelLayers.js',
         './js/_panelAdvancedMenu.js',
-        './js/_help.js',
+        './js/Comp_help.js',
         './js/_layout.js',
         '//unpkg.com/react@16/umd/react.development.js',
         '//unpkg.com/react-dom@16/umd/react-dom.development.js',
