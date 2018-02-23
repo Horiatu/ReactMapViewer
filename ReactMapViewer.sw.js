@@ -11,8 +11,11 @@ self.addEventListener('install', function(event) {
 
     const urlsToCache = [
         './',
+        './images/logo.png',
+        './images/flag.CA.22.png',
         './index.html',      
         './css/styles.css',
+        './css/jquery-ui.min.css',
         './lib/jquery-1.12.4.min.js',
         './lib/jquery-ui.min.js',
         '//unpkg.com/react@16/umd/react.development.js',
@@ -20,6 +23,7 @@ self.addEventListener('install', function(event) {
         '//unpkg.com/babel-standalone@6.15.0/babel.min.js',
         '//code.responsivevoice.org/responsivevoice.js',
         './lib/arcgis.dojo-4.6.js',
+        '//js.arcgis.com/4.6/esri/themes/base/icons/fonts/CalciteWebCoreIcons.ttf?cu4poq',
         './js/RMap.js',
         './js/NavMenu.js',
         './js/NavBar.js',
@@ -29,6 +33,10 @@ self.addEventListener('install', function(event) {
         './js/PanelAdvancedMenu.js',
         './js/Help.js',
         './js/Layout.js',
+        // 'https://www.arcgis.com/sharing/rest/portals/self?f=json&culture=en',
+        // 'https://js.arcgis.com/4.6/esri/core/workers/worker.js',
+        // 'https://js.arcgis.com/4.6/esri/themes/base/fonts/avenir-next/Avenir_Next_W00_400.woff2',
+        // 'https://esri.github.io/calcite-maps/dist/fonts/bootstrap/glyphicons-halflings-regular.woff2',
     ];
 
     event.waitUntil(
@@ -114,12 +122,13 @@ self.addEventListener('fetch', function(event) {
             return response;
         }
 
-        console.log('No response found in cache. About to fetch from network...');
+        // console.log('No response found in cache. About to fetch from network...');
 
         // event.request will always have the proper mode set ('cors, 'no-cors', etc.) so we don't
         // have to hardcode 'no-cors' like we do when fetch()ing in the install handler.
         return fetch(event.request).then(function(response) {
-            console.log('Response from network is:', response);
+            if(response.url !== '' || response.type !== 'opaque')
+                console.log('Response from network is:', response);
 
             return response;
         }).catch(function(error) {
