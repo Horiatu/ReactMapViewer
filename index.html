@@ -41,7 +41,7 @@
 
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <!-- <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script> -->
 
     <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
 
@@ -77,15 +77,15 @@
 
     <script src="./lib/arcgis.dojo-4.6.js"></script>
 
-    <script type="text/babel" src="./js/RMap.js"></script>
-    <script type="text/babel" src="./js/NavMenu.js"></script>
-    <script type="text/babel" src="./js/NavBar.js"></script>
-    <script type="text/babel" src="./js/Panels.js"></script>
-    <script type="text/babel" src="./js/PanelLegend.js"></script>
-    <script type="text/babel" src="./js/PanelLayers.js"></script>
-    <script type="text/babel" src="./js/PanelAdvancedMenu.js"></script>
-    <script type="text/babel" src="./js/Help.js"></script>
-    <script type="text/babel" src="./js/Layout.js"></script>
+    <script type="text/javascript" src="./js/_help.js"></script>
+    <script type="text/javascript" src="./js/_navMenu.js"></script>
+    <script type="text/javascript" src="./js/_navBar.js"></script>
+    <script type="text/javascript" src="./js/_panels.js"></script>
+    <script type="text/javascript" src="./js/_panelLegend.js"></script>
+    <script type="text/javascript" src="./js/_panelLayers.js"></script>
+    <script type="text/javascript" src="./js/_panelAdvancedMenu.js"></script>
+    <script type="text/javascript" src="./js/_map.js"></script>
+    <script type="text/javascript" src="./js/_layout.js"></script>
 
 
   </head>
@@ -93,11 +93,12 @@
   <body class="calcite-maps calcite-nav-top app-loading">
     <div id="root"></div>
 
-    <script type="text/babel">
-      ReactDOM.render(
-          <Layout itemId="326320c9eab3489d8d17bc389ce1e023"/>,
-          document.getElementById('root')
-      );
+    <script type="text/javascript">
+      // ReactDOM.render(
+      //     <Layout itemId="326320c9eab3489d8d17bc389ce1e023"/>,
+      //     document.getElementById('root')
+      // ); 
+      ReactDOM.render(React.createElement(Layout, { itemId: "326320c9eab3489d8d17bc389ce1e023" }), document.getElementById('root'));
     </script>
   </body>
 </html>

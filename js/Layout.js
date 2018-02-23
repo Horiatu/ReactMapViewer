@@ -20,6 +20,7 @@ class ErrorBoundary extends React.Component {
 	  }
 }
 
+//
 class Layout extends React.Component {
     render() {
     	return (
@@ -28,6 +29,7 @@ class Layout extends React.Component {
     		</ErrorBoundary>
     	);
     }
+
 	componentDidMount() {
 	    if(responsiveVoice && responsiveVoice.voiceSupport()) {
 	        responsiveVoice.speak('React Map Viewer');
