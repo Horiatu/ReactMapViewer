@@ -41,27 +41,6 @@ self.addEventListener('fetch', function(event) {
                 { 
                     // error: get from cache
                     getFromCache(event.request);
-                    // caches.open(CACHE_NAME).then((cache) => {
-
-                    //     try {
-                    //         caches.match(event.request).then(
-                    //             (response) => {
-                    //                 // Cache hit - return response
-                    //                 if (response) {
-                    //                       console.log("Get from Cache:", event.request);
-                    //                       return response;
-                    //                 }
-                    //             }, 
-                    //             (reason) => {
-                    //                 console.log('Error - Get from Cache:', reason);
-                    //                 return cache.match('offline.html');
-                    //             }
-                    //         );
-                    //     } catch (ex) {
-                    //         console.log('Error - Get from Cache (1):', ex.message);
-                    //         return cache.match('offline.html');
-                    //     }
-                    // });
                 }
             }, 
             function(reason) {
