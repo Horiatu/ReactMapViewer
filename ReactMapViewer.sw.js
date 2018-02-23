@@ -99,8 +99,8 @@ self.addEventListener('fetch', (event) => {
             return response;
         }
         return fetch(event.request).then((response) => {
-            if(response.url !== '' || response.type !== 'opaque')
-                console.log('Response from network is:', response);
+            // if(response.url !== '' || response.type !== 'opaque')
+            //     console.log('Response from network is:', response);
 
             return response;
         }).catch((error) => {
