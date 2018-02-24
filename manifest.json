@@ -33,7 +33,6 @@
       "sizes": "57x57"
     }
   ],
-  "display": "standalone",
   "background_color": "#f0ffc0",
   "theme_color": "#000000",
   "start_url": "index.html"
