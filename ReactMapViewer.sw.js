@@ -94,12 +94,12 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request).then((response) => {
         if (response) {
-            console.log('Found response in cache for:', event.request);
+            // console.log('Found response in cache for:', event.request);
 
             return response;
         }
         
-        const url = new URL(event.request.url, location.href);
+        const url = new URL(event.request.url);//, location.href);
         url.search += (url.search ? '&' : '?') + 'cache-bust=' + Date.now();
         const request = new Request(url, {mode: 'no-cors'});
 
