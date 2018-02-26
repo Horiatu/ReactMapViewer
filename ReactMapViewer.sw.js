@@ -109,7 +109,10 @@ self.addEventListener('fetch', (event) => {
 
 
             if (response.url !== '' && response.status < 400 && response.type !== 'opaque') {
-                cache.put(event.request, response.clone());
+                const clonedResponse = response.clone();
+                caches.open(CACHES.prefetch).then((cache) => {
+                    cache.put(event.request, clonedResponse);
+                });
             }
 
             return response;
