@@ -94,7 +94,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request).then((response) => {
         if (response) {
-            // console.log('Found response in cache:', response);
+            console.log('Found response in cache for:', event.request);
 
             return response;
         }
@@ -108,7 +108,7 @@ self.addEventListener('fetch', (event) => {
             //     console.log('Response from network is:', response);
 
 
-            if (response.url !== '' && response.status >= 400 && response.type !== 'opaque') {
+            if (response.url !== '' && response.status < 400 && response.type !== 'opaque') {
                 cache.put(event.request, response.clone());
             }
 
