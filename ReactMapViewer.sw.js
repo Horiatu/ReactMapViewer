@@ -104,14 +104,10 @@ self.addEventListener('fetch', (event) => {
         const request = new Request(url, {mode: 'no-cors'});
 
         return fetch(event.request).then((response) => {
-            // if(response.url !== '' || response.type !== 'opaque')
-            //     console.log('Response from network is:', response);
-
-
             if (response.url !== '' && response.status < 400 && response.type !== 'opaque') {
                 const clonedResponse = response.clone();
                 caches.open(CACHES.prefetch).then((cache) => {
-                    cache.put(event.request, clonedResponse);
+                    cache.put(request, clonedResponse);
                 });
             }
 
@@ -120,7 +116,7 @@ self.addEventListener('fetch', (event) => {
             console.error('Fetching failed:', error);
             caches.open(CACHES.prefetch).then((cache) => {
                 return cache.match('offline.html').then((response) => {
-                    console.log('Offline Response:', response.clone())
+                    // console.log('Offline Response:', response.clone())
                     return response;
                 });
             });
