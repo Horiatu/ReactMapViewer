@@ -98,9 +98,15 @@ self.addEventListener('fetch', (event) => {
 
             return response;
         }
+        
+        const url = new URL(event.request.url, location.href);
+        url.search += (url.search ? '&' : '?') + 'cache-bust=' + Date.now();
+        const request = new Request(url, {mode: 'no-cors'});
+
         return fetch(event.request).then((response) => {
             // if(response.url !== '' || response.type !== 'opaque')
             //     console.log('Response from network is:', response);
+
 
             if (response.url !== '' && response.status >= 400 && response.type !== 'opaque') {
                 cache.put(event.request, response.clone());
