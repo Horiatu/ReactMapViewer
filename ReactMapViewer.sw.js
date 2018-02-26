@@ -102,13 +102,19 @@ self.addEventListener('fetch', (event) => {
             // if(response.url !== '' || response.type !== 'opaque')
             //     console.log('Response from network is:', response);
 
+            if (response.url !== '' && response.status >= 400 && response.type !== 'opaque') {
+                cache.put(event.request, response.clone());
+            }
+
             return response;
         }).catch((error) => {
             console.error('Fetching failed:', error);
             caches.open(CACHES.prefetch).then((cache) => {
-                return cache.match('offline.html');
+                return cache.match('offline.html').then((response) => {
+                    console.log('Offline Response:', response.clone())
+                    return response;
+                });
             });
-            // throw error;
         });
     }));
 });
