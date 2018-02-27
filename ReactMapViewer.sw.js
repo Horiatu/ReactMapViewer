@@ -2,7 +2,8 @@
 
 const CACHE_VERSION = 1;
 const CACHES = {
-  prefetch: 'ReactMapViewer-cache-v' + CACHE_VERSION
+  prefetch: 'ReactMapViewer-cache-v' + CACHE_VERSION,
+  offline: 'ReactMapViewer-offline-v' + CACHE_VERSION
 };
 
 
@@ -31,15 +32,17 @@ self.addEventListener('install', (event) => {
         './js/Production/PanelAdvancedMenu.js',
         './js/Production/Help.js',
         './js/Production/Layout.js',
-        '//unpkg.com/react@16/umd/react.development.js',
         '//unpkg.com/react-dom@16/umd/react-dom.development.js',
-        '//code.responsivevoice.org/responsivevoice.js',
+        './lib/responsivevoice.js',
         '//js.arcgis.com/4.6/esri/themes/base/icons/fonts/CalciteWebCoreIcons.ttf?cu4poq',
-        // '//unpkg.com/babel-standalone@6.15.0/babel.min.js',
         // 'https://www.arcgis.com/sharing/rest/portals/self?f=json&culture=en',
-        // 'https://js.arcgis.com/4.6/esri/core/workers/worker.js',
-        // 'https://js.arcgis.com/4.6/esri/themes/base/fonts/avenir-next/Avenir_Next_W00_400.woff2',
-        // 'https://esri.github.io/calcite-maps/dist/fonts/bootstrap/glyphicons-halflings-regular.woff2',
+        './lib/self',
+        './lib/worker.js',
+        './lib/react.development.js',
+        './fonts/Avenir_Next_W00_400.woff2',
+        './fonts/glyphicons-halflings-regular.woff2',
+        './fonts/CalciteWebCoreIcons.ttf',
+        // '//unpkg.com/babel-standalone@6.15.0/babel.min.js',
     ];
 
     event.waitUntil(
@@ -99,21 +102,22 @@ self.addEventListener('fetch', (event) => {
             return response;
         }
         
-        const url = new URL(event.request.url);//, location.href);
-        url.search += (url.search ? '&' : '?') + 'cache-bust=' + Date.now();
-        const request = new Request(url, {mode: 'no-cors'});
+        // const url = new URL(event.request.url , location.href);
+        // url.search += (url.search ? '&' : '?') + 'cache-bust=' + Date.now();
+        // const request = new Request(event.request.url, {mode: 'no-cors'});
 
+        event.request.mode = 'no-cors';
         return fetch(event.request).then((response) => {
-            if (response.url !== '' && response.status < 400 && response.type !== 'opaque') {
+            if (response.url !== '' && response.status < 400) {//} && response.type !== 'opaque') {
                 const clonedResponse = response.clone();
-                caches.open(CACHES.prefetch).then((cache) => {
-                    cache.put(request, clonedResponse);
+                caches.open(CACHES.offline).then((cache) => {
+                    cache.put(event.request, clonedResponse);
                 });
             }
 
             return response;
         }).catch((error) => {
-            console.error('Fetching failed:', error);
+            console.error('Fetching failed:', error, event.request);
             caches.open(CACHES.prefetch).then((cache) => {
                 return cache.match('offline.html').then((response) => {
                     // console.log('Offline Response:', response.clone())
