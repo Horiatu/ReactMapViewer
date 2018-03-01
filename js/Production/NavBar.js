@@ -3,7 +3,10 @@ class NavBar extends React.Component {
         // console.log('NAVBAR', this);
         return React.createElement(
             "nav",
-            { className: "navbar calcite-navbar navbar-fixed-top calcite-text-light calcite-bg-dark" },
+            {
+                className:
+                    "navbar calcite-navbar navbar-fixed-top calcite-text-light calcite-bg-dark"
+            },
             React.createElement(NavMenu, null),
             React.createElement(
                 "div",
@@ -13,7 +16,9 @@ class NavBar extends React.Component {
                     { className: "calcite-title-main" },
                     "React Map Viewer"
                 ),
-                React.createElement("span", { className: "calcite-title-divider hidden-xs" }),
+                React.createElement("span", {
+                    className: "calcite-title-divider hidden-xs"
+                }),
                 React.createElement(
                     "span",
                     { className: "calcite-title-sub hidden-xs" },
@@ -28,7 +33,10 @@ class NavBar extends React.Component {
                     null,
                     React.createElement(
                         "div",
-                        { className: "calcite-navbar-search calcite-search-expander" },
+                        {
+                            className:
+                                "calcite-navbar-search calcite-search-expander"
+                        },
                         React.createElement("div", { id: "searchWidgetDiv" })
                     )
                 )
@@ -37,22 +45,26 @@ class NavBar extends React.Component {
     }
     componentDidMount() {
         const self = this;
-        require(["esri/widgets/Search", "calcite-maps/calcitemaps-arcgis-support-v0.5", "dojo/domReady!"], function (Search, CalciteMapArcGISSupport) {
+        require([
+            "esri/widgets/Search",
+            "calcite-maps/calcitemaps-arcgis-support-v0.5",
+            "dojo/domReady!"
+        ], function(Search, CalciteMapArcGISSupport) {
             const searchWidget = new Search({
                 container: "searchWidgetDiv",
                 view: self.props.mapView,
                 locationEnabled: true
             });
             CalciteMapArcGISSupport.setSearchExpandEvents(searchWidget);
-            searchWidget.on("search-focus", function (ev) {
+            searchWidget.on("search-focus", function(ev) {
                 // console.log('search focus', ev, searchWidget);
                 responsiveVoice.speak(ev.target.allPlaceholder);
             });
-            searchWidget.on("search-start", function (ev) {
+            searchWidget.on("search-start", function(ev) {
                 // console.log("Search started", ev);
-                responsiveVoice.speak('Search');
+                responsiveVoice.speak("Search");
             });
-            searchWidget.on("search-complete", function (ev) {
+            searchWidget.on("search-complete", function(ev) {
                 // console.log('Search complete', ev, searchWidget);
                 responsiveVoice.speak(ev.results[0].results[0].name);
             });

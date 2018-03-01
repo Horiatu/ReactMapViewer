@@ -9,12 +9,23 @@ class RMap extends React.Component {
                 React.createElement("div", { id: "mapViewDiv" }),
                 React.createElement(
                     "div",
-                    { className: "calcite-panels calcite-panels-right calcite-text-light calcite-bg-dark panel-group" },
+                    {
+                        className:
+                            "calcite-panels calcite-panels-right calcite-text-light calcite-bg-dark panel-group"
+                    },
                     React.createElement(PanelAbout, null),
-                    React.createElement(PanelBasemaps, { mapView: this.state.mapView }),
-                    React.createElement(PanelLegend, { mapView: this.state.mapView }),
-                    React.createElement(PanelLayers, { mapView: this.state.mapView }),
-                    React.createElement(PanelPrint, { mapView: this.state.mapView }),
+                    React.createElement(PanelBasemaps, {
+                        mapView: this.state.mapView
+                    }),
+                    React.createElement(PanelLegend, {
+                        mapView: this.state.mapView
+                    }),
+                    React.createElement(PanelLayers, {
+                        mapView: this.state.mapView
+                    }),
+                    React.createElement(PanelPrint, {
+                        mapView: this.state.mapView
+                    }),
                     React.createElement(PanelAdvancedMenu, null)
                 )
             ),
@@ -30,25 +41,41 @@ class RMap extends React.Component {
         };
         const self = this;
 
-        require(["dojo/dom-class",
-        // ArcGIS
-        "esri/WebMap", "esri/views/MapView",
+        require([
+            "dojo/dom-class",
+            // ArcGIS
+            "esri/WebMap",
+            "esri/views/MapView",
 
-        // Widgets
-        "esri/widgets/BasemapToggle", "esri/widgets/ScaleBar",
+            // Widgets
+            "esri/widgets/BasemapToggle",
+            "esri/widgets/ScaleBar",
 
-        // Bootstrap
-        "bootstrap/Collapse", "bootstrap/Dropdown",
+            // Bootstrap
+            "bootstrap/Collapse",
+            "bootstrap/Dropdown",
 
-        // Calcite Maps
-        "calcite-maps/calcitemaps-v0.5",
-        // Calcite Maps ArcGIS Support
-        "calcite-maps/calcitemaps-arcgis-support-v0.5", "dojo/domReady!"], function (domClass, WebMap, MapView, Print, BasemapToggle, ScaleBar, Collapse, Dropdown, CalciteMaps, CalciteMapArcGISSupport) {
-
+            // Calcite Maps
+            "calcite-maps/calcitemaps-v0.5",
+            // Calcite Maps ArcGIS Support
+            "calcite-maps/calcitemaps-arcgis-support-v0.5",
+            "dojo/domReady!"
+        ], function(
+            domClass,
+            WebMap,
+            MapView,
+            Print,
+            BasemapToggle,
+            ScaleBar,
+            Collapse,
+            Dropdown,
+            CalciteMaps,
+            CalciteMapArcGISSupport
+        ) {
             /******************************************************************
              *
              * Create the map, view and widgets
-             * 
+             *
              ******************************************************************/
             // console.log('RMAP', self);
 
@@ -75,7 +102,7 @@ class RMap extends React.Component {
             });
 
             // Popup and panel sync
-            mapView.then(function () {
+            mapView.then(function() {
                 CalciteMapArcGISSupport.setPopupPanelSync(mapView);
                 domClass.remove(document.body, "app-loading");
             });

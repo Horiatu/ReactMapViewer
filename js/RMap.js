@@ -1,35 +1,34 @@
 class RMap extends React.Component {
     render() {
-      	return (
-          <div>
-      			<div className="calcite-map calcite-map-absolute">
-      			    <div id="mapViewDiv"></div>
+        return (
+            <div>
+                <div className="calcite-map calcite-map-absolute">
+                    <div id="mapViewDiv" />
 
-                <div className="calcite-panels calcite-panels-right calcite-text-light calcite-bg-dark panel-group">
-                    <PanelAbout/>
-                    <PanelBasemaps mapView={this.state.mapView}/>
-                    <PanelLegend mapView={this.state.mapView}/>
-                    <PanelLayers mapView={this.state.mapView}/>
-                    <PanelPrint mapView={this.state.mapView}/>
-                    <PanelAdvancedMenu/>
+                    <div className="calcite-panels calcite-panels-right calcite-text-light calcite-bg-dark panel-group">
+                        <PanelAbout />
+                        <PanelBasemaps mapView={this.state.mapView} />
+                        <PanelLegend mapView={this.state.mapView} />
+                        <PanelLayers mapView={this.state.mapView} />
+                        <PanelPrint mapView={this.state.mapView} />
+                        <PanelAdvancedMenu />
+                    </div>
                 </div>
-
-      			</div>
-            <NavBar mapView={this.state.mapView}/>
-          </div>
-      	);
+                <NavBar mapView={this.state.mapView} />
+            </div>
+        );
     }
 
-  	constructor(props) {
+    constructor(props) {
         super(props);
         this.state = {
             map: null,
-            mapView: null,
+            mapView: null
         };
         const self = this;
 
         require([
-            "dojo/dom-class", 
+            "dojo/dom-class",
             // ArcGIS
             "esri/WebMap",
             "esri/views/MapView",
@@ -47,17 +46,22 @@ class RMap extends React.Component {
             // Calcite Maps ArcGIS Support
             "calcite-maps/calcitemaps-arcgis-support-v0.5",
             "dojo/domReady!"
-        ], 
-        function(
-            domClass, 
-            WebMap, MapView, 
-            Print, BasemapToggle, ScaleBar, Collapse, Dropdown, 
-            CalciteMaps, CalciteMapArcGISSupport) {
-
+        ], function(
+            domClass,
+            WebMap,
+            MapView,
+            Print,
+            BasemapToggle,
+            ScaleBar,
+            Collapse,
+            Dropdown,
+            CalciteMaps,
+            CalciteMapArcGISSupport
+        ) {
             /******************************************************************
              *
              * Create the map, view and widgets
-             * 
+             *
              ******************************************************************/
             // console.log('RMAP', self);
 
@@ -67,7 +71,7 @@ class RMap extends React.Component {
                     id: self.props.itemId
                 }
             });
-            
+
             // View
             const mapView = new MapView({
                 container: "mapViewDiv",
@@ -80,11 +84,11 @@ class RMap extends React.Component {
 
             self.setState({
                 map: map,
-                mapView: mapView,
+                mapView: mapView
             });
 
             // Popup and panel sync
-            mapView.then(function(){
+            mapView.then(function() {
                 CalciteMapArcGISSupport.setPopupPanelSync(mapView);
                 domClass.remove(document.body, "app-loading");
             });
@@ -94,13 +98,13 @@ class RMap extends React.Component {
                 view: mapView,
                 secondBasemap: "satellite"
             });
-            mapView.ui.add(basemapToggle, "bottom-right");          
-            
+            mapView.ui.add(basemapToggle, "bottom-right");
+
             // Scalebar
             var scaleBar = new ScaleBar({
                 view: mapView
             });
             mapView.ui.add(scaleBar, "bottom-left");
         });
-	}
+    }
 }

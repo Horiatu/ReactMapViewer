@@ -14,9 +14,18 @@ class Panel extends React.Component {
                     { className: "panel-title" },
                     React.createElement(
                         "a",
-                        { className: "panel-toggle collapsed", role: "button", "data-toggle": "collapse", href: "#collapse" + name,
-                            "aria-expanded": "false", "aria-controls": "collapse" + name },
-                        React.createElement("span", { className: "glyphicon " + icon, "aria-hidden": "true" }),
+                        {
+                            className: "panel-toggle collapsed",
+                            role: "button",
+                            "data-toggle": "collapse",
+                            href: "#collapse" + name,
+                            "aria-expanded": "false",
+                            "aria-controls": "collapse" + name
+                        },
+                        React.createElement("span", {
+                            className: "glyphicon " + icon,
+                            "aria-hidden": "true"
+                        }),
                         React.createElement(
                             "span",
                             { className: "panel-label" },
@@ -25,14 +34,28 @@ class Panel extends React.Component {
                     ),
                     React.createElement(
                         "a",
-                        { className: "panel-close", role: "button", "data-toggle": "collapse", tabIndex: "0", href: "#panel" + name },
-                        React.createElement("span", { className: "esri-icon esri-icon-close", "aria-hidden": "true" })
+                        {
+                            className: "panel-close",
+                            role: "button",
+                            "data-toggle": "collapse",
+                            tabIndex: "0",
+                            href: "#panel" + name
+                        },
+                        React.createElement("span", {
+                            className: "esri-icon esri-icon-close",
+                            "aria-hidden": "true"
+                        })
                     )
                 )
             ),
             React.createElement(
                 "div",
-                { id: "collapse" + name, className: "panel-collapse collapse", role: "tabpanel", "aria-labelledby": "heading" + name },
+                {
+                    id: "collapse" + name,
+                    className: "panel-collapse collapse",
+                    role: "tabpanel",
+                    "aria-labelledby": "heading" + name
+                },
                 React.createElement(
                     "div",
                     { className: "panel-body" },
@@ -45,39 +68,53 @@ class Panel extends React.Component {
 
 class PanelAbout extends Panel {
     render() {
-        return super.renderContent("About", function () {
-            return React.createElement(Help, null);
-        }, "glyphicon-file");
+        return super.renderContent(
+            "About",
+            function() {
+                return React.createElement(Help, null);
+            },
+            "glyphicon-file"
+        );
     }
 }
 
 class PanelBasemaps extends Panel {
     render() {
-        return super.renderContent("Basemaps", function () {
+        return super.renderContent("Basemaps", function() {
             return React.createElement("div", { id: "basemapGalleryDiv" });
         });
     }
     componentDidMount() {
         const self = this;
-        require(["esri/widgets/BasemapGallery", "dojo/domReady!"], BasemapGallery => new BasemapGallery({
-            container: "basemapGalleryDiv",
-            view: self.props.mapView
-        }));
+        require([
+            "esri/widgets/BasemapGallery",
+            "dojo/domReady!"
+        ], BasemapGallery =>
+            new BasemapGallery({
+                container: "basemapGalleryDiv",
+                view: self.props.mapView
+            }));
     }
 }
 
 class PanelPrint extends Panel {
     render() {
-        return super.renderContent("Print", function () {
-            return React.createElement("div", { id: "printDiv" });
-        }, "glyphicon-print");
+        return super.renderContent(
+            "Print",
+            function() {
+                return React.createElement("div", { id: "printDiv" });
+            },
+            "glyphicon-print"
+        );
     }
     componentDidMount() {
         const self = this;
-        require(["esri/widgets/Print", "dojo/domReady!"], Print => new Print({
-            container: "printDiv",
-            view: self.props.mapView,
-            printServiceUrl: "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
-        }));
+        require(["esri/widgets/Print", "dojo/domReady!"], Print =>
+            new Print({
+                container: "printDiv",
+                view: self.props.mapView,
+                printServiceUrl:
+                    "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+            }));
     }
 }

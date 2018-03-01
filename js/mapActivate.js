@@ -1,5 +1,5 @@
 require([
-  "dojo/dom-class", 
+  "dojo/dom-class",
   // ArcGIS
   "esri/WebMap",
   "esri/views/MapView",
@@ -24,15 +24,25 @@ require([
 
   "dojo/domReady!"
 ], function(
-  domClass, 
-  WebMap, MapView, Basemaps, Search, Legend, LayerList, 
-  Print, BasemapToggle, ScaleBar, Collapse, Dropdown, 
-  CalciteMaps, CalciteMapArcGISSupport) {
-
+  domClass,
+  WebMap,
+  MapView,
+  Basemaps,
+  Search,
+  Legend,
+  LayerList,
+  Print,
+  BasemapToggle,
+  ScaleBar,
+  Collapse,
+  Dropdown,
+  CalciteMaps,
+  CalciteMapArcGISSupport
+) {
   /******************************************************************
    *
    * Create the map, view and widgets
-   * 
+   *
    ******************************************************************/
 
   // Map
@@ -41,7 +51,7 @@ require([
       id: "326320c9eab3489d8d17bc389ce1e023"
     }
   });
-  
+
   // View
   var mapView = new MapView({
     container: "mapViewDiv",
@@ -53,7 +63,7 @@ require([
   });
 
   // Popup and panel sync
-  mapView.then(function(){
+  mapView.then(function() {
     CalciteMapArcGISSupport.setPopupPanelSync(mapView);
     domClass.remove(document.body, "app-loading");
   });
@@ -69,8 +79,8 @@ require([
   var basemaps = new Basemaps({
     container: "basemapGalleryDiv",
     view: mapView
-  })
-  
+  });
+
   // Legend
   var legendWidget = new Legend({
     container: "legendDiv",
@@ -87,7 +97,8 @@ require([
   var printWidget = new Print({
     container: "printDiv",
     view: mapView,
-    printServiceUrl: "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+    printServiceUrl:
+      "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
   });
 
   // BasemapToggle
@@ -95,12 +106,11 @@ require([
     view: mapView,
     secondBasemap: "satellite"
   });
-  mapView.ui.add(basemapToggle, "bottom-right");          
-  
+  mapView.ui.add(basemapToggle, "bottom-right");
+
   // Scalebar
   var scaleBar = new ScaleBar({
     view: mapView
   });
   mapView.ui.add(scaleBar, "bottom-left");
-
 });

@@ -2,10 +2,20 @@ class NavMenu extends React.Component {
 	render() {
 		return React.createElement(
 			"div",
-			{ className: "dropdown calcite-dropdown calcite-text-dark calcite-bg-light", role: "presentation" },
+			{
+				className:
+					"dropdown calcite-dropdown calcite-text-dark calcite-bg-light",
+				role: "presentation"
+			},
 			React.createElement(
 				"a",
-				{ className: "dropdown-toggle", role: "button", "aria-haspopup": "true", "aria-expanded": "false", tabIndex: "0" },
+				{
+					className: "dropdown-toggle",
+					role: "button",
+					"aria-haspopup": "true",
+					"aria-expanded": "false",
+					tabIndex: "0"
+				},
 				React.createElement(
 					"div",
 					{ className: "calcite-dropdown-toggle" },
@@ -28,8 +38,16 @@ class NavMenu extends React.Component {
 					null,
 					React.createElement(
 						"a",
-						{ role: "menuitem", tabIndex: "0", href: "#", "data-target": "#panelAbout", "aria-haspopup": "true" },
-						React.createElement("span", { className: "glyphicon glyphicon-file" }),
+						{
+							role: "menuitem",
+							tabIndex: "0",
+							href: "#",
+							"data-target": "#panelAbout",
+							"aria-haspopup": "true"
+						},
+						React.createElement("span", {
+							className: "glyphicon glyphicon-file"
+						}),
 						" About"
 					)
 				),
@@ -38,8 +56,16 @@ class NavMenu extends React.Component {
 					null,
 					React.createElement(
 						"a",
-						{ role: "menuitem", tabIndex: "0", href: "#", "data-target": "#panelBasemaps", "aria-haspopup": "true" },
-						React.createElement("span", { className: "glyphicon glyphicon-th-large" }),
+						{
+							role: "menuitem",
+							tabIndex: "0",
+							href: "#",
+							"data-target": "#panelBasemaps",
+							"aria-haspopup": "true"
+						},
+						React.createElement("span", {
+							className: "glyphicon glyphicon-th-large"
+						}),
 						" Basemaps"
 					)
 				),
@@ -48,8 +74,16 @@ class NavMenu extends React.Component {
 					null,
 					React.createElement(
 						"a",
-						{ role: "menuitem", tabIndex: "0", href: "#", "data-target": "#panelLegend", "aria-haspopup": "true" },
-						React.createElement("span", { className: "glyphicon glyphicon-list-alt" }),
+						{
+							role: "menuitem",
+							tabIndex: "0",
+							href: "#",
+							"data-target": "#panelLegend",
+							"aria-haspopup": "true"
+						},
+						React.createElement("span", {
+							className: "glyphicon glyphicon-list-alt"
+						}),
 						" Legend"
 					)
 				),
@@ -58,8 +92,16 @@ class NavMenu extends React.Component {
 					null,
 					React.createElement(
 						"a",
-						{ role: "menuitem", tabIndex: "0", href: "#", "data-target": "#panelLayers", "aria-haspopup": "true" },
-						React.createElement("span", { className: "glyphicon glyphicon-list" }),
+						{
+							role: "menuitem",
+							tabIndex: "0",
+							href: "#",
+							"data-target": "#panelLayers",
+							"aria-haspopup": "true"
+						},
+						React.createElement("span", {
+							className: "glyphicon glyphicon-list"
+						}),
 						" Layers"
 					)
 				),
@@ -68,8 +110,16 @@ class NavMenu extends React.Component {
 					null,
 					React.createElement(
 						"a",
-						{ role: "menuitem", tabIndex: "0", href: "#", "data-target": "#panelPrint", "aria-haspopup": "true" },
-						React.createElement("span", { className: "glyphicon glyphicon-print" }),
+						{
+							role: "menuitem",
+							tabIndex: "0",
+							href: "#",
+							"data-target": "#panelPrint",
+							"aria-haspopup": "true"
+						},
+						React.createElement("span", {
+							className: "glyphicon glyphicon-print"
+						}),
 						" Print"
 					)
 				),
@@ -78,8 +128,16 @@ class NavMenu extends React.Component {
 					null,
 					React.createElement(
 						"a",
-						{ role: "menuitem", tabIndex: "0", href: "#", "data-target": "#panelAdvancedMenu", "aria-haspopup": "true" },
-						React.createElement("span", { className: "glyphicon glyphicon-menu-hamburger" }),
+						{
+							role: "menuitem",
+							tabIndex: "0",
+							href: "#",
+							"data-target": "#panelAdvancedMenu",
+							"aria-haspopup": "true"
+						},
+						React.createElement("span", {
+							className: "glyphicon glyphicon-menu-hamburger"
+						}),
 						" Advanced Menu"
 					)
 				),
@@ -88,8 +146,16 @@ class NavMenu extends React.Component {
 					null,
 					React.createElement(
 						"a",
-						{ role: "menuitem", tabIndex: "0", href: "#", id: "calciteToggleNavbar", "aria-haspopup": "true" },
-						React.createElement("span", { className: "glyphicon glyphicon-fullscreen" }),
+						{
+							role: "menuitem",
+							tabIndex: "0",
+							href: "#",
+							id: "calciteToggleNavbar",
+							"aria-haspopup": "true"
+						},
+						React.createElement("span", {
+							className: "glyphicon glyphicon-fullscreen"
+						}),
 						" Full Map"
 					)
 				)
