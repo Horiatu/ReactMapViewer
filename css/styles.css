@@ -1,41 +1,42 @@
 @font-face {
-    font-family: 'icomoon';
-    src:  url('../icomoon/fonts/icomoon.eot?feqs76');
-    src:  url('../icomoon/fonts/icomoon.eot?feqs76#iefix') format('embedded-opentype'),
-    url('../icomoon/fonts/icomoon.ttf?feqs76') format('truetype'),
-    url('../icomoon/fonts/icomoon.woff?feqs76') format('woff'),
-    url('../icomoon/fonts/icomoon.svg?feqs76#icomoon') format('svg');
+    font-family: "icomoon";
+    src: url("../icomoon/fonts/icomoon.eot?feqs76");
+    src: url("../icomoon/fonts/icomoon.eot?feqs76#iefix")
+            format("embedded-opentype"),
+        url("../icomoon/fonts/icomoon.ttf?feqs76") format("truetype"),
+        url("../icomoon/fonts/icomoon.woff?feqs76") format("woff"),
+        url("../icomoon/fonts/icomoon.svg?feqs76#icomoon") format("svg");
     font-weight: normal;
     font-style: normal;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed|Ubuntu+Mono');
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed|Ubuntu+Mono");
 
 html {
-  /*background: url(https://raw.githubusercontent.com/arjunamgain/FilterMenu/master/images/bg.jpg) no-repeat center center fixed;*/
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    /*background: url(https://raw.githubusercontent.com/arjunamgain/FilterMenu/master/images/bg.jpg) no-repeat center center fixed;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 .esri-print__exported-file--error {
     color: #ffa500;
 }
 
-.esri-layer-list__item-label, 
+.esri-layer-list__item-label,
 .esri-layer-list__item-container {
-  padding: 4px;
+    padding: 4px;
 }
 
 .esri-legend__layer-body {
-    margin-left: 0; 
+    margin-left: 0;
 }
 
 .esri-legend__layer-row {
@@ -47,8 +48,8 @@ body {
     background-color: gray;
 }
 
-.esri-legend__layer-cell--info{
-    width:100%;
+.esri-legend__layer-cell--info {
+    width: 100%;
 }
 
 .panel-body {
@@ -64,29 +65,29 @@ body {
 }
 
 .esri-legend__service {
-    padding: 0; 
-    border-bottom: none; 
+    padding: 0;
+    border-bottom: none;
 }
 
 .clearfix:after,
 .clearfix:before {
-  /*content: '';*/
-  display: table
+    /*content: '';*/
+    display: table;
 }
 
 .clearfix:after {
-  clear: both;
-  display: block
+    clear: both;
+    display: block;
 }
 
 .contentTitle {
-  margin-bottom: 20px;
-  width:100%;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .contentTitle img {
-  width: 45px;
-  vertical-align: top;
+    width: 45px;
+    vertical-align: top;
 }
 
 .contentTitle h1 {
@@ -105,34 +106,34 @@ body {
     -webkit-margin-end: 0;
 }
 
-
 .bottom .title {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .bottom .title h3 {
-  font-size: 22px;
-  margin-bottom: 5px;
+    font-size: 22px;
+    margin-bottom: 5px;
 }
 
 .title small {
-  font-size: 10px;
-  /*color: #595959;*/
-  text-transform: uppercase;
-  letter-spacing: 1px;
+    font-size: 10px;
+    /*color: #595959;*/
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .panelTool input {
-  width: 18px;
-  height: 18px;
-  background: transparent;
-  color: white;
-  border-color: transparent;
-  font-family: 'icomoon' !important;
+    width: 18px;
+    height: 18px;
+    background: transparent;
+    color: white;
+    border-color: transparent;
+    font-family: "icomoon" !important;
 }
 
-[class^="icon-"], [class*=" icon-"] {
-    font-family: 'icomoon' !important;
+[class^="icon-"],
+[class*=" icon-"] {
+    font-family: "icomoon" !important;
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -143,24 +144,24 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-ul.details{
+ul.details {
     list-style: none;
     -webkit-margin-before: 0;
     -webkit-padding-start: 0;
-     -webkit-margin-after: 0;
+    -webkit-margin-after: 0;
     -webkit-margin-end: -12px;
     overflow-y: auto;
     height: 275px;
-    color:#f0ffc0;
+    color: #f0ffc0;
 }
 
 ul.details li {
-  margin-right: 4px;
-  padding:4px;
+    margin-right: 4px;
+    padding: 4px;
 }
 
 .fontIcon {
-    font-family: 'icomoon' !important;
+    font-family: "icomoon" !important;
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -177,9 +178,9 @@ span.details {
     line-height: 1.5em;
 }
 
-img.details{
-    width:16px;
-    height:16px;
+img.details {
+    width: 16px;
+    height: 16px;
     margin-right: 0.5em;
     vertical-align: text-bottom;
 }
@@ -188,8 +189,9 @@ img.details{
     color: navy;
 }
 
-[class^="tool-"], [class*=" tool-"] {
-    font-family: 'icomoon' !important;
+[class^="tool-"],
+[class*=" tool-"] {
+    font-family: "icomoon" !important;
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -229,33 +231,33 @@ img.details{
 }
 
 .loading-indicator {
-  display: none;
-  height: 100%;
-  width: 100%;
-  z-index: 500;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  background: #fff; 
+    display: none;
+    height: 100%;
+    width: 100%;
+    z-index: 500;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background: #fff;
 }
 
-.app-loading .loading-indicator, 
+.app-loading .loading-indicator,
 .app-error .loading-indicator {
-  display: block; 
+    display: block;
 }
 
 .app-error .loading-message {
-  background-position: top center;
-  background-image: url(./images/error.png);
-  background-repeat: no-repeat;
-  padding-top: 60px;
-  width: 100%;
-  position: absolute;
-  z-index: 2;
-  top: 75%;
-  left: 0;
-  text-align: center; 
+    background-position: top center;
+    background-image: url(./images/error.png);
+    background-repeat: no-repeat;
+    padding-top: 60px;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 75%;
+    left: 0;
+    text-align: center;
 }
 
 #loadingTitle {
@@ -272,6 +274,5 @@ img.details{
 }
 
 .fullTable {
-	width:100%;
+    width: 100%;
 }
-
