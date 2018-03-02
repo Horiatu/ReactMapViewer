@@ -1,0 +1,27 @@
+{
+  "name": "reactmapviewer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ReactMapViewer.sw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Horiatu/ReactMapViewer.git"
+  },
+  "keywords": [
+    "MapViewer",
+    "ESRI"
+  ],
+  "author": "Horia Tudosie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Horiatu/ReactMapViewer/issues"
+  },
+  "homepage": "https://github.com/Horiatu/ReactMapViewer#readme",
+  "devDependencies": {
+    "eslint": "^4.18.1",
+    "eslint-plugin-react": "^7.7.0"
+  }
+}
