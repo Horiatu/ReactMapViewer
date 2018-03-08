@@ -91,61 +91,61 @@ self.addEventListener("install", event => {
     );
 });
 
-self.addEventListener("activate", event => {
-    const expectedCacheNames = Object.keys(CACHES).map(key => {
-        return CACHES[key];
-    });
+// self.addEventListener("activate", event => {
+//     const expectedCacheNames = Object.keys(CACHES).map(key => {
+//         return CACHES[key];
+//     });
 
-    event.waitUntil(
-        caches.keys().then(cacheNames => {
-            return Promise.all(
-                cacheNames.map(cacheName => {
-                    if (expectedCacheNames.indexOf(cacheName) === -1) {
-                        // If this cache name isn't present in the array of "expected" cache names, then delete it.
-                        console.log("Deleting out of date cache:", cacheName);
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        })
-    );
-});
+//     event.waitUntil(
+//         caches.keys().then(cacheNames => {
+//             return Promise.all(
+//                 cacheNames.map(cacheName => {
+//                     if (expectedCacheNames.indexOf(cacheName) === -1) {
+//                         // If this cache name isn't present in the array of "expected" cache names, then delete it.
+//                         console.log("Deleting out of date cache:", cacheName);
+//                         return caches.delete(cacheName);
+//                     }
+//                 })
+//             );
+//         })
+//     );
+// });
 
-self.addEventListener("fetch", event => {
-    event.respondWith(
-        caches.match(event.request).then(response => {
-            if (response) {
-                // console.log('Found response in cache for:', event.request);
+// self.addEventListener("fetch", event => {
+//     event.respondWith(
+//         caches.match(event.request).then(response => {
+//             if (response) {
+//                 // console.log('Found response in cache for:', event.request);
 
-                return response;
-            }
+//                 return response;
+//             }
 
-            // const url = new URL(event.request.url , location.href);
-            // url.search += (url.search ? '&' : '?') + 'cache-bust=' + Date.now();
-            // const request = new Request(event.request.url, {mode: 'no-cors'});
+//             // const url = new URL(event.request.url , location.href);
+//             // url.search += (url.search ? '&' : '?') + 'cache-bust=' + Date.now();
+//             // const request = new Request(event.request.url, {mode: 'no-cors'});
 
-            event.request.mode = "no-cors";
-            return fetch(event.request)
-                .then(response => {
-                    if (response.url !== "" && response.status < 400) {
-                        //} && response.type !== 'opaque') {
-                        const clonedResponse = response.clone();
-                        caches.open(CACHES.offline).then(cache => {
-                            cache.put(event.request, clonedResponse);
-                        });
-                    }
+//             event.request.mode = "no-cors";
+//             return fetch(event.request)
+//                 .then(response => {
+//                     if (response.url !== "" && response.status < 400) {
+//                         //} && response.type !== 'opaque') {
+//                         const clonedResponse = response.clone();
+//                         caches.open(CACHES.offline).then(cache => {
+//                             cache.put(event.request, clonedResponse);
+//                         });
+//                     }
 
-                    return response;
-                })
-                .catch(error => {
-                    console.error("Fetching failed:", error, event.request);
-                    caches.open(CACHES.prefetch).then(cache => {
-                        return cache.match("offline.html").then(response => {
-                            // console.log('Offline Response:', response.clone())
-                            return response;
-                        });
-                    });
-                });
-        })
-    );
-});
+//                     return response;
+//                 })
+//                 .catch(error => {
+//                     console.error("Fetching failed:", error, event.request);
+//                     caches.open(CACHES.prefetch).then(cache => {
+//                         return cache.match("offline.html").then(response => {
+//                             // console.log('Offline Response:', response.clone())
+//                             return response;
+//                         });
+//                     });
+//                 });
+//         })
+//     );
+// });
