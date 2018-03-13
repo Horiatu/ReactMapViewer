@@ -11,17 +11,18 @@ class AppConfig extends React.Component {
 	    require(["esri/portal/PortalItem"], 
 		function(PortalItem) { 
 			new PortalItem({
-				id: "b54efa235b7f455f91b14396090ad3e3",
-				url: "http://esrica-tsg.maps.arcgis.com"
+				id: self.props.appId,
+				url: self.props.portalUrl
 			}).load().then((r)=>{
 				// console.log("item",r);
 				r.fetchData().then(d => {
 					self.config = d.values;
 					console.log("config",self.config);
 				});
-			});
+			},
+			(error) => console.log('error', error));
 		});
 	}
 }
 
-new AppConfig();
+

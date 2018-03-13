@@ -30,6 +30,13 @@ class Layout extends React.Component {
 		);
 	}
 //
+	componentWillMount() {
+		React.createElement(AppConfig, {
+			appId: "b54efa235b7f455f91b14396090ad3e3",
+			portalUrl: "http://esrica-tsg.maps.arcgis.com"
+		});
+	}
+
 	componentDidMount() {
 		if (responsiveVoice && responsiveVoice.voiceSupport()) {
 			responsiveVoice.speak("React Map Viewer");
