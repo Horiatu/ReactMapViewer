@@ -1,68 +1,56 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-      <meta charset="UTF-8" />
+
+<head>
+    <meta charset="UTF-8" />
     <!-- https://codepen.io/horiatu/pen/PQJGeO?editors=0010 -->
     <script>
-      if ('serviceWorker' in navigator) {
+    if('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register('./ReactMapViewer.sw.js').then(function(registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-          }, function(err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-          });
+            navigator.serviceWorker.register('./ReactMapViewer.sw.js').then(function(registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+            });
         });
-      } else {
+    } else {
         console.log('?');
-      }
-    </script>
+    }
 
+    </script>
     <meta name="keywords" content="accessibility">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2,user-scalable=yes">
     <meta name="description" content="WCAG Tests using React, ArcGIS JS v4, Calcite Maps and Bootstrap">
-  
     <title>React Map Viewer</title>
     <link rel="shortcut icon" type="image/png" href="./images/favicon.png">
-
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="manifest" href="./manifest.json">
-    
-
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="./images/shortcutsicons/accessibility.57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./images/shortcutsicons/accessibility.72.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./images/shortcutsicons/accessibility.114.png" />
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./images/shortcutsicons/accessibility.144.png" />
     <link rel="apple-touch-icon-precomposed" sizes="128x128" href="./images/shortcutsicons/accessibility.128.png" />
     <link rel="apple-touch-icon-precomposed" sizes="192x192" href="./images/shortcutsicons/accessibility.192.png" />
-
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <!-- <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script> -->
-
     <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
-
     <link rel="stylesheet" href="./css/jquery-ui.min.css">
     <script src="./lib/jquery-1.12.4.min.js"></script>
     <script src="./lib/jquery-ui.min.js"></script>
-
-  	<!-- Calcite Maps Bootstrap -->
-  	<link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-bootstrap.min-v0.6.css">
-
-  	<!-- Calcite Maps -->
-  	<link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-arcgis-4.x.min-v0.6.css">
-
+    <!-- Calcite Maps Bootstrap -->
+    <link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-bootstrap.min-v0.6.css">
+    <!-- Calcite Maps -->
+    <link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-arcgis-4.x.min-v0.6.css">
     <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
-
     <link rel="stylesheet" href="./css/styles.css">
-
     <script type="text/javascript">
-        var dojoConfig = {
-            packages: [{
+    var dojoConfig = {
+        packages: [{
                 name: "bootstrap",
                 location: "https://esri.github.io/calcite-maps/dist/vendor/dojo-bootstrap"
             },
@@ -70,18 +58,14 @@
                 name: "calcite-maps",
                 location: "https://esri.github.io/calcite-maps/dist/js/dojo"
             }],
-            paths: {
-                jquery: "./lib/jquery-1.12.4.min.js"
-            }
-        };
+        paths: {
+            jquery: "./lib/jquery-1.12.4.min.js"
+        }
+    };
+
     </script>
-
     <script src="./lib/arcgis.dojo-4.6.js"></script>
-    
-
-
     <script type="text/javascript" src="./js/Production/Help.js"></script>
-
     <script type="text/javascript" src="./js/Production/NavMenu.js"></script>
     <script type="text/javascript" src="./js/Production/NavBar.js"></script>
     <script type="text/javascript" src="./js/Production/Panels.js"></script>
@@ -90,22 +74,20 @@
     <script type="text/javascript" src="./js/Production/PanelAdvancedMenu.js"></script>
     <script type="text/javascript" src="./js/Production/RMap.js"></script>
     <script type="text/javascript" src="./js/Production/Layout.js"></script>
+</head>
 
-  </head>
-
-  <body class="calcite-maps calcite-nav-top app-loading">
+<body class="calcite-maps calcite-nav-top app-loading">
     <div id="root"></div>
-
     <!-- <script src="./js/templateConfig.js"/> -->
-
     <!-- <script type="text/javascript" src="./js/main.js"></script> -->
-
     <script type="text/javascript">
-      // ReactDOM.render(
-      //     <Layout itemId="326320c9eab3489d8d17bc389ce1e023"/>,
-      //     document.getElementById('root')
-      // ); 
-      ReactDOM.render(React.createElement(Layout, { itemId: "326320c9eab3489d8d17bc389ce1e023" }), document.getElementById('root'));
+    // ReactDOM.render(
+    //     <Layout itemId="326320c9eab3489d8d17bc389ce1e023"/>,
+    //     document.getElementById('root')
+    // );
+    ReactDOM.render(React.createElement(Layout, { itemId: "326320c9eab3489d8d17bc389ce1e023" }), document.getElementById('root'));
+
     </script>
-  </body>
+</body>
+
 </html>
