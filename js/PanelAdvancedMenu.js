@@ -43,6 +43,7 @@ class PanelAdvancedMenu extends Panel {
 									</span>
 									<span>Details</span>
 								</li>
+								
 								<li
 									tabIndex="0"
 									onFocus={() =>

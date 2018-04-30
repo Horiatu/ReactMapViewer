@@ -49,18 +49,17 @@ class PanelAdvancedMenu extends Panel {
 						"div",
 						{ className: "bottom" },
 						React.createElement(
-							"ul",
-							{ className: "details" },
+							"ul", { className: "advanceMenu" },
 							React.createElement(
 								"li",
 								{
 									tabIndex: "0",
-									onFocus: () => responsiveVoice.speak("details"),
+									onFocus: () => responsiveVoice.speak("advanceMenu"),
 									role: "button"
 								},
 								React.createElement(
 									"span",
-									{ className: "details fontIcon" },
+									{ className: "fontIcon" },
 									"\uE905"
 								),
 								React.createElement("span", null, "Details")
@@ -74,7 +73,7 @@ class PanelAdvancedMenu extends Panel {
 								},
 								React.createElement(
 									"span",
-									{ className: "details fontIcon" },
+									{ className: "advanceMenu fontIcon" },
 									"\uE986"
 								),
 								React.createElement("span", null, "Search")
@@ -87,7 +86,7 @@ class PanelAdvancedMenu extends Panel {
 									role: "button"
 								},
 								React.createElement("img", {
-									className: "details",
+									className: "advanceMenu",
 									src: "images/flag.CA.22.png",
 									alt: ""
 								}),
@@ -102,7 +101,7 @@ class PanelAdvancedMenu extends Panel {
 								},
 								React.createElement(
 									"span",
-									{ className: "details fontIcon" },
+									{ className: "advanceMenu fontIcon" },
 									"\uE9CA"
 								),
 								React.createElement("span", null, "Overview map")
@@ -116,7 +115,7 @@ class PanelAdvancedMenu extends Panel {
 								},
 								React.createElement(
 									"span",
-									{ className: "details fontIcon" },
+									{ className: "advanceMenu fontIcon" },
 									"\uE916"
 								),
 								React.createElement("span", null, "Layer Manager")
@@ -130,7 +129,7 @@ class PanelAdvancedMenu extends Panel {
 								},
 								React.createElement(
 									"span",
-									{ className: "details fontIcon" },
+									{ className: "advanceMenu fontIcon" },
 									"\uE90F"
 								),
 								React.createElement("span", null, "Filters")
@@ -144,7 +143,7 @@ class PanelAdvancedMenu extends Panel {
 								},
 								React.createElement(
 									"span",
-									{ className: "details fontIcon" },
+									{ className: "advanceMenu fontIcon" },
 									"\uEA0C"
 								),
 								React.createElement("span", null, "Info Panel")
@@ -158,7 +157,7 @@ class PanelAdvancedMenu extends Panel {
 								},
 								React.createElement(
 									"span",
-									{ className: "details fontIcon" },
+									{ className: "advanceMenu fontIcon" },
 									"\uE9CC"
 								),
 								React.createElement("span", null, "Reverse Geocode")
@@ -172,7 +171,7 @@ class PanelAdvancedMenu extends Panel {
 								},
 								React.createElement(
 									"span",
-									{ className: "details fontIcon" },
+									{ className: "advanceMenu fontIcon" },
 									"\uE93D"
 								),
 								React.createElement("span", null, "Feature List")
@@ -186,7 +185,7 @@ class PanelAdvancedMenu extends Panel {
 								},
 								React.createElement(
 									"span",
-									{ className: "details fontIcon" },
+									{ className: "advanceMenu fontIcon" },
 									"\uE91E"
 								),
 								React.createElement("span", null, "Measure")
@@ -200,7 +199,7 @@ class PanelAdvancedMenu extends Panel {
 								},
 								React.createElement(
 									"span",
-									{ className: "details fontIcon" },
+									{ className: "advanceMenu fontIcon" },
 									"\uE931"
 								),
 								React.createElement("span", null, "Share")
@@ -214,7 +213,7 @@ class PanelAdvancedMenu extends Panel {
 								},
 								React.createElement(
 									"span",
-									{ className: "details fontIcon" },
+									{ className: "advanceMenu fontIcon" },
 									"\uE902"
 								),
 								React.createElement("span", null, "Bookmarks")
@@ -228,7 +227,7 @@ class PanelAdvancedMenu extends Panel {
 								},
 								React.createElement(
 									"span",
-									{ className: "details fontIcon" },
+									{ className: "advanceMenu fontIcon" },
 									"\uE929"
 								),
 								React.createElement("span", null, "Print")

@@ -144,7 +144,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-ul.details {
+ul.advanceMenu {
     list-style: none;
     -webkit-margin-before: 0;
     -webkit-padding-start: 0;
@@ -155,12 +155,12 @@ ul.details {
     color: #f0ffc0;
 }
 
-ul.details li {
+ul.advanceMenu li {
     margin-right: 4px;
     padding: 4px;
 }
 
-.fontIcon {
+ul.advanceMenu .fontIcon {
     font-family: "icomoon" !important;
     speak: none;
     font-style: normal;
@@ -173,12 +173,12 @@ ul.details li {
     vertical-align: bottom;
 }
 
-span.details {
+ul.advanceMenu span{
     margin-right: 0.5em;
     line-height: 1.5em;
 }
 
-img.details {
+ul.advanceMenu img{
     width: 16px;
     height: 16px;
     margin-right: 0.5em;
