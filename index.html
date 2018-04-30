@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <!-- https://codepen.io/horiatu/pen/PQJGeO?editors=0010 -->
-    <script>
+    <!-- <script>
     if('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
             navigator.serviceWorker.register('./ReactMapViewer.sw.js').then(function(registration) {
@@ -19,7 +19,7 @@
         console.log('?');
     }
 
-    </script>
+    </script> -->
     <meta name="keywords" content="accessibility">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +28,7 @@
     <title>React Map Viewer</title>
     <link rel="shortcut icon" type="image/png" href="./images/favicon.png">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="manifest" href="./manifest.json">
+    <!-- <link rel="manifest" href="./manifest.json"> -->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="./images/shortcutsicons/accessibility.57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./images/shortcutsicons/accessibility.72.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./images/shortcutsicons/accessibility.114.png" />
@@ -49,22 +49,44 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
     <link rel="stylesheet" href="./css/styles.css">
     <script type="text/javascript">
-    var dojoConfig = {
-        packages: [{
-                name: "bootstrap",
-                location: "https://esri.github.io/calcite-maps/dist/vendor/dojo-bootstrap"
-            },
-            {
-                name: "calcite-maps",
-                location: "https://esri.github.io/calcite-maps/dist/js/dojo"
-            }],
-        paths: {
-            jquery: "./lib/jquery-1.12.4.min.js"
-        }
-    };
+        var package_path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+
+        var locale = /locale=([a-z][a-z]-[a-z][a-z])/gi.exec(window.location.search);
+
+        if(locale && locale.length === 2) {
+            locale = locale[1];
+        } else locale = navigator.language.toLowerCase(); //'en-us';
+        document.documentElement.lang = locale;
+
+        var dojoConfig = {
+            locale: locale,
+            packages: [{
+                    name: "application",
+                    location: package_path + '/js/Production'
+                }, {
+                    name: "config",
+                    location: package_path + '/config'
+                }, {
+                    name: "arcgis_templates",
+                    location: package_path + '/..'
+                },
+                {
+                    name: "bootstrap",
+                    location: "https://esri.github.io/calcite-maps/dist/vendor/dojo-bootstrap"
+                },
+                {
+                    name: "calcite-maps",
+                    location: "https://esri.github.io/calcite-maps/dist/js/dojo"
+                }],
+            paths: {
+                jquery: "./lib/jquery-1.12.4.min.js"
+            }
+        };
 
     </script>
     <script src="./lib/arcgis.dojo-4.6.js"></script>
+    <!-- <script type="text/javascript" src="./js/Production/AppConfig.js"></script> -->
+
     <script type="text/javascript" src="./js/Production/Help.js"></script>
     <script type="text/javascript" src="./js/Production/NavMenu.js"></script>
     <script type="text/javascript" src="./js/Production/NavBar.js"></script>
@@ -79,14 +101,11 @@
 <body class="calcite-maps calcite-nav-top app-loading">
     <div id="root"></div>
     <!-- <script src="./js/templateConfig.js"/> -->
-    <!-- <script type="text/javascript" src="./js/main.js"></script> -->
-    <script type="text/javascript">
-    // ReactDOM.render(
-    //     <Layout itemId="326320c9eab3489d8d17bc389ce1e023"/>,
-    //     document.getElementById('root')
-    // );
-    ReactDOM.render(React.createElement(Layout, { itemId: "326320c9eab3489d8d17bc389ce1e023" }), document.getElementById('root'));
-
+<!--     <script type="text/javascript" src="./js/main.js"></script>
+ -->    <script type="text/javascript">
+        ReactDOM.render(React.createElement(Layout, { 
+            itemId: "326320c9eab3489d8d17bc389ce1e023" 
+        }), document.getElementById('root'));
     </script>
 </body>
 

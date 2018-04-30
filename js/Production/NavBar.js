@@ -1,6 +1,6 @@
 class NavBar extends React.Component {
     render() {
-        // console.log('NAVBAR', this);
+        console.log('NAVBAR', this);
         return React.createElement(
             "nav",
             {
@@ -22,7 +22,8 @@ class NavBar extends React.Component {
                 React.createElement(
                     "span",
                     { className: "calcite-title-sub hidden-xs" },
-                    "Responsive Design: A Bootstrap theme for building modern map apps"
+                    this.props.title
+                    // "Responsive Design: A Bootstrap theme for building modern map apps"
                 )
             ),
             React.createElement(

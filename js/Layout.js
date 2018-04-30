@@ -14,7 +14,7 @@ class ErrorBoundary extends React.Component {
 	render() {
 		if (this.state.hasError) {
 			// You can render any custom fallback UI
-			return <h1>Something went wrong.</h1>;
+			return React.createElement("h1", null, "Something went wrong.");
 		}
 		return this.props.children;
 	}
@@ -22,19 +22,18 @@ class ErrorBoundary extends React.Component {
 
 //
 class Layout extends React.Component {
-	render() {
-		return (
-			<ErrorBoundary>
-				<RMap itemId="326320c9eab3489d8d17bc389ce1e023" />
-			</ErrorBoundary>
-		);
+	constructor(props) {
+		super(props);
 	}
-//
-	componentWillMount() {
-		React.createElement(AppConfig, {
-			appId: "b54efa235b7f455f91b14396090ad3e3",
-			portalUrl: "http://esrica-tsg.maps.arcgis.com"
-		});
+
+	render() {
+		return React.createElement(
+			ErrorBoundary,
+			null,
+			React.createElement(RMap, {
+				itemId: "326320c9eab3489d8d17bc389ce1e023"
+			})
+		);
 	}
 
 	componentDidMount() {
