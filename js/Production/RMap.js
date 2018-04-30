@@ -46,10 +46,6 @@ class RMap extends React.Component {
         };
         const self = this;
 
-        // const hasTool = function(this, name) {
-
-        // };
-
         require([
             "dojo/dom-class",
             // ArcGIS
@@ -101,10 +97,10 @@ class RMap extends React.Component {
                     self.config.hasTool = function(name) {
                         return this.hasOwnProperty('tool_'+name) && this['tool_'+name];
                     };
-                    self.config.allTools = function() {
-                        return Object.keys(this).filter(tool => tool.indexOf('tool_')===0 && this[tool]).map(tool => tool.slice(5));
+                    self.config.allTools = function(except=[]) {
+                        return Object.keys(this).filter(tool => (tool.indexOf('tool_')===0) && (except.findIndex(t => 'tool_'+t === tool)<0) && this[tool]).map(tool => tool.slice(5));
                     };
-                    // console.log("allTools", self.config.allTools());
+                    // console.log("allTools", self.config.allTools(['print_legend', 'print_layouts']));
                     // console.log("appConfig", self.config);
 
                     // Map
