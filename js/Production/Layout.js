@@ -26,25 +26,14 @@ class Layout extends React.Component {
 		super(props);
 	};
 
-
 	render() {
 		return React.createElement(
 			ErrorBoundary,
 			null,
 			React.createElement(RMap, {
-				appId: "b54efa235b7f455f91b14396090ad3e3",
-				portalUrl: "https://www.arcgis.com",
-				//"http://esrica-tsg.maps.arcgis.com",
+				appId: this.props.appId,
+				portalUrl: this.props.portalUrl
 			})
 		);
 	}
-
-	// componentDidMount() {
-	// 	if (responsiveVoice && responsiveVoice.voiceSupport()) {
-	// 		responsiveVoice.speak("React Map Viewer");
-	// 		$("p, span, a").click(ev => {
-	// 			responsiveVoice.speak(ev.currentTarget.innerText);
-	// 		});
-	// 	}
-	// }
 }

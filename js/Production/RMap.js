@@ -47,8 +47,8 @@ class RMap extends React.Component {
         const self = this;
 
         new AppConfig({
-            appId: "b54efa235b7f455f91b14396090ad3e3",
-            portalUrl: "https://www.arcgis.com",
+            appId: this.props.appId,//"b54efa235b7f455f91b14396090ad3e3",
+            portalUrl: this.props.portalUrl,//"https://www.arcgis.com",
             voice: false
         }).state.promise.then((config) => {
             this.config = config;
@@ -121,16 +121,15 @@ class RMap extends React.Component {
                     view: mapView
                 });
                 mapView.ui.add(scaleBar, "bottom-left");
-            });
-        }) 
-    }
 
-    componentDidMount() {
-        if (responsiveVoice && responsiveVoice.voiceSupport()) {
-            responsiveVoice.speak("React Map Viewer");
-                $(".calcite-title-main").click(ev => {
-                responsiveVoice.speak(ev.currentTarget.innerText);
+                if (config.voice && responsiveVoice && responsiveVoice.voiceSupport()) {
+                    responsiveVoice.speak("React Map Viewer");
+                        $(".calcite-title-main").click(ev => {
+                        responsiveVoice.speak(ev.currentTarget.innerText);
+                    });
+                }
             });
-        }
+        },
+        (error) => console.log('Error reading configuration', error)) 
     }
 }

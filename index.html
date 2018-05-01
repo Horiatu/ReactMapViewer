@@ -67,9 +67,9 @@
                 }, {
                     name: "config",
                     location: package_path + '/config'
-                }, {
-                    name: "arcgis_templates",
-                    location: package_path + '/..'
+                // }, {
+                //     name: "arcgis_templates",
+                //     location: package_path + '/..'
                 },
                 {
                     name: "bootstrap",
@@ -101,11 +101,10 @@
 
 <body class="calcite-maps calcite-nav-top app-loading">
     <div id="root"></div>
-    <!-- <script src="./js/templateConfig.js"/> -->
-<!--     <script type="text/javascript" src="./js/main.js"></script>
- -->    <script type="text/javascript">
+    <script type="text/javascript">
         ReactDOM.render(React.createElement(Layout, { 
-            itemId: "326320c9eab3489d8d17bc389ce1e023" 
+            appId: "b54efa235b7f455f91b14396090ad3e3",
+            portalUrl: "https://www.arcgis.com",
         }), document.getElementById('root'));
     </script>
 </body>
