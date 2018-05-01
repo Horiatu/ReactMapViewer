@@ -33,7 +33,8 @@ class Layout extends React.Component {
 			null,
 			React.createElement(RMap, {
 				appId: "b54efa235b7f455f91b14396090ad3e3",
-				portalUrl: "http://esrica-tsg.maps.arcgis.com",
+				portalUrl: "https://www.arcgis.com",
+				//"http://esrica-tsg.maps.arcgis.com",
 			})
 		);
 	}

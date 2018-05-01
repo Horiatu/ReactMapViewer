@@ -31,7 +31,10 @@ class Layout extends React.Component {
 			ErrorBoundary,
 			null,
 			React.createElement(RMap, {
-				itemId: "326320c9eab3489d8d17bc389ce1e023"
+				appId: "b54efa235b7f455f91b14396090ad3e3",
+				portalUrl: "https://www.arcgis.com",
+				//"http://esrica-tsg.maps.arcgis.com",
+
 			})
 		);
 	}

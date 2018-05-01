@@ -1,6 +1,6 @@
 class RMap extends React.Component {
     render() {
-        return React.createElement(
+        const UI = React.createElement(
             "div",
             null,
             React.createElement(
@@ -27,15 +27,17 @@ class RMap extends React.Component {
                         mapView: this.state.mapView
                     }),
                     React.createElement(PanelAdvancedMenu, null)
-                )
+                ),
+                React.createElement(NavBar, { 
+                    mapView: this.state.mapView,
+                    title: (this.config && this.config.title && this.config.title !== "") ? 
+                        this.config.title : 
+                        "Responsive Design: A Bootstrap theme for building modern map apps" 
+                })
             ),
-            React.createElement(NavBar, { 
-                mapView: this.state.mapView,
-                title: (this.config && this.config.title && this.config.title !== "") ? 
-                    this.config.title : 
-                    "Responsive Design: A Bootstrap theme for building modern map apps" 
-            })
         );
+
+        return UI;
     }
 
     constructor(props) {
@@ -46,107 +48,82 @@ class RMap extends React.Component {
         };
         const self = this;
 
-        require([
-            "dojo/dom-class",
-            // ArcGIS
-            "esri/WebMap",
-            "esri/views/MapView",
-            "esri/portal/PortalItem",
+        new AppConfig({
+            appId: "b54efa235b7f455f91b14396090ad3e3",
+            portalUrl: "https://www.arcgis.com",
+            voice: false
+        }).state.promise.then((config) => {
+            self.config = config;
+            require([
+                "dojo/dom-class",
+                // ArcGIS
+                "esri/WebMap",
+                "esri/views/MapView",
 
-            // Widgets
-            "esri/widgets/BasemapToggle",
-            "esri/widgets/ScaleBar",
+                // Widgets
+                "esri/widgets/Print",
+                "esri/widgets/BasemapToggle",
+                "esri/widgets/ScaleBar",
 
-            // Bootstrap
-            "bootstrap/Collapse",
-            "bootstrap/Dropdown",
+                // Bootstrap
+                "bootstrap/Collapse",
+                "bootstrap/Dropdown",
 
-            // Calcite Maps
-            "calcite-maps/calcitemaps-v0.5",
-            // Calcite Maps ArcGIS Support
-            "calcite-maps/calcitemaps-arcgis-support-v0.5",
-            "dojo/domReady!"
-        ], function(
-            domClass,
-            WebMap,
-            MapView,
-            PortalItem,
-            Print,
-            BasemapToggle,
-            ScaleBar,
-            Collapse,
-            Dropdown,
-            CalciteMaps,
-            CalciteMapArcGISSupport
-        ) {
-            /******************************************************************
-             *
-             * Create the map, view and widgets
-             *
-             ******************************************************************/
-            // console.log('RMAP', self);
-
-            // console.log('PortalItem', PortalItem);
-            new PortalItem({
-                id: self.props.appId, 
-                url: self.props.portalUrl 
-            }).load().then(r => {
-                // console.log("appConfig item",r);
-                r.fetchData().then(d => {
-                    self.config = d.values;
-                    self.config.hasTool = function(name) {
-                        return this.hasOwnProperty('tool_'+name) && this['tool_'+name];
-                    };
-                    self.config.allTools = function(except=[]) {
-                        return Object.keys(this).filter(tool => (tool.indexOf('tool_')===0) && (except.findIndex(t => 'tool_'+t === tool)<0) && this[tool]).map(tool => tool.slice(5));
-                    };
-                    // console.log("allTools", self.config.allTools(['print_legend', 'print_layouts']));
-                    // console.log("appConfig", self.config);
-
-                    // Map
-                    const map = new WebMap({
-                        portalItem: {
-                            id: self.config.webmap 
-                        }
-                    });
-
-                    // View
-                    const mapView = new MapView({
-                        container: "mapViewDiv",
-                        map: map,
-                        padding: {
-                            top: 50,
-                            bottom: 0
-                        }
-                    });
-
-                    self.setState({
-                        map: map,
-                        mapView: mapView
-                    });
-
-                    // Popup and panel sync
-                    mapView.then(function() {
-                        CalciteMapArcGISSupport.setPopupPanelSync(mapView);
-                        domClass.remove(document.body, "app-loading");
-                    });
-
-                    // BasemapToggle *
-                    var basemapToggle = new BasemapToggle({
-                        view: mapView,
-                        secondBasemap: "satellite"
-                    });
-                    mapView.ui.add(basemapToggle, "bottom-right");
-
-                    // // Scalebar
-                    // var scaleBar = new ScaleBar({
-                    //     view: mapView
-                    // });
-                    // mapView.ui.add(scaleBar, "bottom-left");
-                                    
+                // Calcite Maps
+                "calcite-maps/calcitemaps-v0.5",
+                // Calcite Maps ArcGIS Support
+                "calcite-maps/calcitemaps-arcgis-support-v0.5",
+                "dojo/domReady!"
+            ], function(
+                domClass,
+                WebMap,
+                MapView,
+                Print,
+                BasemapToggle,
+                ScaleBar,
+                Collapse,
+                Dropdown,
+                CalciteMaps,
+                CalciteMapArcGISSupport) 
+            {
+                // console.log('promise response', config);
+                const map = new WebMap({
+                    portalItem: {
+                        id: config.webmap 
+                    }
                 });
-            }, 
-            error => console.log('error', error));
-        });
+
+                const mapView = new MapView({
+                    container: "mapViewDiv",
+                    map: map,
+                    padding: {
+                        top: 50,
+                        bottom: 0
+                    }
+                });
+
+                self.setState({
+                    map: map,
+                    mapView: mapView
+                });
+
+                // Popup and panel sync
+                mapView.then(function() {
+                    CalciteMapArcGISSupport.setPopupPanelSync(mapView);
+                    domClass.remove(document.body, "app-loading");
+                });
+
+                var basemapToggle = new BasemapToggle({
+                    view: mapView,
+                    secondBasemap: "satellite"
+                });
+                mapView.ui.add(basemapToggle, "bottom-right");
+
+                var scaleBar = new ScaleBar({
+                    view: mapView
+                });
+                mapView.ui.add(scaleBar, "bottom-left");
+            });
+        }) 
     }
 }
