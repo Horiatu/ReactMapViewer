@@ -39,12 +39,12 @@ class Layout extends React.Component {
 		);
 	}
 
-	componentDidMount() {
-		if (responsiveVoice && responsiveVoice.voiceSupport()) {
-			responsiveVoice.speak("React Map Viewer");
-			$("p, span, a").click(ev => {
-				responsiveVoice.speak(ev.currentTarget.innerText);
-			});
-		}
-	}
+	// componentDidMount() {
+	// 	if (responsiveVoice && responsiveVoice.voiceSupport()) {
+	// 		responsiveVoice.speak("React Map Viewer");
+	// 		$("p, span, a").click(ev => {
+	// 			responsiveVoice.speak(ev.currentTarget.innerText);
+	// 		});
+	// 	}
+	// }
 }

@@ -1,6 +1,6 @@
 class RMap extends React.Component {
     render() {
-        const UI = React.createElement(
+        return React.createElement(
             "div",
             null,
             React.createElement(
@@ -36,8 +36,6 @@ class RMap extends React.Component {
                 })
             ),
         );
-
-        return UI;
     }
 
     constructor(props) {
@@ -53,7 +51,7 @@ class RMap extends React.Component {
             portalUrl: "https://www.arcgis.com",
             voice: false
         }).state.promise.then((config) => {
-            self.config = config;
+            this.config = config;
             require([
                 "dojo/dom-class",
                 // ArcGIS
@@ -73,7 +71,7 @@ class RMap extends React.Component {
                 "calcite-maps/calcitemaps-v0.5",
                 // Calcite Maps ArcGIS Support
                 "calcite-maps/calcitemaps-arcgis-support-v0.5",
-                "dojo/domReady!"
+                // "dojo/domReady!"
             ], function(
                 domClass,
                 WebMap,
@@ -98,7 +96,7 @@ class RMap extends React.Component {
                     map: map,
                     padding: {
                         top: 50,
-                        bottom: 0
+                        // bottom: 0
                     }
                 });
 
@@ -125,5 +123,14 @@ class RMap extends React.Component {
                 mapView.ui.add(scaleBar, "bottom-left");
             });
         }) 
+    }
+
+    componentDidMount() {
+        if (responsiveVoice && responsiveVoice.voiceSupport()) {
+            responsiveVoice.speak("React Map Viewer");
+                $(".calcite-title-main").click(ev => {
+                responsiveVoice.speak(ev.currentTarget.innerText);
+            });
+        }
     }
 }
