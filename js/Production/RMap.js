@@ -209,16 +209,19 @@ class RMap extends React.Component {
                         }
                     });
 
-                    require([
-                        "esri/widgets/Print", 
-                        "dojo/domReady!"
-                    ], 
-                    Print => new Print({
-                        container: "printDiv",
-                        view: self.state.mapView,
-                        printServiceUrl:
-                            "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
-                    }));
+                    if(self.config.tool_print)
+                    {
+                        require([
+                            "esri/widgets/Print", 
+                            "dojo/domReady!"
+                        ], 
+                        Print => new Print({
+                            container: "printDiv",
+                            view: self.state.mapView,
+                            printServiceUrl:
+                                "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+                        }));
+                    }
                     
 
                     const basemapToggle = new BasemapToggle({
