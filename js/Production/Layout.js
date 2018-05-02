@@ -30,7 +30,8 @@ class Layout extends React.Component {
 		return React.createElement(
 			ErrorBoundary,
 			null,
-			React.createElement(RMap, {
+			React.createElement(
+				RMap, {
 				appId: this.props.appId,
 				portalUrl: this.props.portalUrl
 			})

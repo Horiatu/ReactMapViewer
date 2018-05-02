@@ -80,20 +80,12 @@ class PanelAbout extends Panel {
 
 class PanelBasemaps extends Panel {
     render() {
-        return super.renderContent("Basemaps", function() {
-            return React.createElement("div", { id: "basemapGalleryDiv" });
-        });
-    }
-    componentDidMount() {
-        const self = this;
-        require([
-            "esri/widgets/BasemapGallery",
-            "dojo/domReady!"
-        ], BasemapGallery =>
-            new BasemapGallery({
-                container: "basemapGalleryDiv",
-                view: self.props.mapView
-            }));
+        return super.renderContent(
+            "Basemaps", 
+            function() {
+                return React.createElement("div", { id: "basemapGalleryDiv" });
+            }
+        );
     }
 }
 
@@ -106,15 +98,5 @@ class PanelPrint extends Panel {
             },
             "glyphicon-print"
         );
-    }
-    componentDidMount() {
-        const self = this;
-        require(["esri/widgets/Print", "dojo/domReady!"], Print =>
-            new Print({
-                container: "printDiv",
-                view: self.props.mapView,
-                printServiceUrl:
-                    "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
-            }));
     }
 }
