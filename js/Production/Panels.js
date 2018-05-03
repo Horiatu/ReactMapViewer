@@ -100,3 +100,27 @@ class PanelPrint extends Panel {
         );
     }
 }
+
+class PanelLayers extends Panel {
+    render() {
+        return super.renderContent(
+            "Layers",
+            function() {
+                return React.createElement("div", { id: "layersDiv" });
+            },
+            "glyphicon-list"
+        );
+    }
+}
+
+class PanelLegend extends Panel {
+    render() {
+        return super.renderContent(
+            "Legend",
+            function() {
+                return React.createElement("div", { id: "legendDiv" });
+            },
+            "glyphicon-list-alt"
+        );
+    }
+}

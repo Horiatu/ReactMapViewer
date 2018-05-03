@@ -241,6 +241,8 @@ class RMap extends React.Component {
                         $(".calcite-title-main").click(ev => {
                         responsiveVoice.speak(ev.currentTarget.innerText);
                     });
+                } else {
+                    responsiveVoice = { speak: function(text) { console.log('"'+text+'" (muted)');} };
                 }
             });
         },
