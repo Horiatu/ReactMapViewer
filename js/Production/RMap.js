@@ -14,26 +14,18 @@ class RMap extends React.Component {
                             "calcite-panels calcite-panels-right calcite-text-light calcite-bg-dark panel-group"
                     },
                     React.createElement(PanelAbout, null),
-                    React.createElement(PanelBasemaps, {
-                        mapView: this.state.mapView
-                    }),
-                    React.createElement(PanelLegend, {
-                        mapView: this.state.mapView
-                    }),
-                    React.createElement(PanelLayers, {
-                        mapView: this.state.mapView
-                    }),
-                    React.createElement(PanelPrint, {
-                        mapView: this.state.mapView
-                    }),
-                    React.createElement(PanelAdvancedMenu, null)
-                ),
-                React.createElement(NavBar, { 
-                    mapView: this.state.mapView,
-                    title: (this.config && this.config.title && this.config.title !== "") ? 
-                        this.config.title : 
-                        "Responsive Design: A Bootstrap theme for building modern map apps" 
-                })
+                    React.createElement(PanelBasemaps),
+                    React.createElement(PanelLegend),
+                    React.createElement(PanelLayers),
+                    React.createElement(PanelPrint),
+                    React.createElement(PanelAdvancedMenu),
+
+                    React.createElement(NavBar, { 
+                        title: (this.config && this.config.title && this.config.title !== "") ? 
+                            this.config.title : 
+                            "Responsive Design: A Bootstrap theme for building modern map apps" 
+                    })
+                )
             ),
         );
     }
@@ -58,11 +50,6 @@ class RMap extends React.Component {
                 "esri/WebMap",
                 "esri/views/MapView",
 
-                // Widgets
-                "esri/widgets/Print",
-                "esri/widgets/BasemapToggle",
-                "esri/widgets/ScaleBar",
-
                 // Bootstrap
                 "bootstrap/Collapse",
                 "bootstrap/Dropdown",
@@ -76,9 +63,6 @@ class RMap extends React.Component {
                 domClass,
                 WebMap,
                 MapView,
-                Print,
-                BasemapToggle,
-                ScaleBar,
                 Collapse,
                 Dropdown,
                 CalciteMaps,
@@ -223,17 +207,57 @@ class RMap extends React.Component {
                         }));
                     }
                     
-
-                    const basemapToggle = new BasemapToggle({
-                        view: mapView,
-                        secondBasemap: "satellite"
+                    require([
+                        "esri/widgets/Search",
+                        "calcite-maps/calcitemaps-arcgis-support-v0.5",
+                        "dojo/domReady!"
+                    ], function(Search, CalciteMapArcGISSupport) {
+                        const searchWidget = new Search({
+                            container: "searchWidgetDiv",
+                            view: self.state.mapView,
+                            locationEnabled: true
+                        });
+                        CalciteMapArcGISSupport.setSearchExpandEvents(searchWidget);
+                        searchWidget.on("search-focus", function(ev) {
+                            // console.log('search focus', ev, searchWidget);
+                            responsiveVoice.speak(ev.target.allPlaceholder);
+                        });
+                        searchWidget.on("search-start", function(ev) {
+                            // console.log("Search started", ev);
+                            responsiveVoice.speak("Search");
+                        });
+                        searchWidget.on("search-complete", function(ev) {
+                            // console.log('Search complete', ev, searchWidget);
+                            responsiveVoice.speak(ev.results[0].results[0].name);
+                        });
                     });
-                    mapView.ui.add(basemapToggle, "bottom-right");
 
-                    const scaleBar = new ScaleBar({
-                        view: mapView
+
+                    require([
+                        "esri/widgets/BasemapToggle", 
+                        "dojo/domReady!"
+                    ], 
+                    BasemapToggle => {
+                         const basemapToggle = new BasemapToggle({
+                            view: mapView,
+                            secondBasemap: "satellite"
+                        });
+                        mapView.ui.add(basemapToggle, "bottom-right");
                     });
-                    mapView.ui.add(scaleBar, "bottom-left");
+
+                    if(self.config.scalebar)
+                    {
+                        require([
+                            "esri/widgets/ScaleBar", 
+                            "dojo/domReady!"
+                        ], 
+                        ScaleBar => {
+                            const scaleBar = new ScaleBar({
+                                view: mapView
+                            });
+                            mapView.ui.add(scaleBar, "bottom-left");
+                        });
+                    }
                 });
 
                 if (config.voice && responsiveVoice && responsiveVoice.voiceSupport()) {
