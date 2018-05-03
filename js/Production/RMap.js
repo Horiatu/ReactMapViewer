@@ -85,115 +85,124 @@ class RMap extends React.Component {
                 });
 
                 // Popup and panel sync
-                mapView.when(function() {
+                mapView.when(function(mv) {
                     self.setState({
                         map: map,
-                        mapView: mapView
+                        mapView: mv
                     });
 
                     CalciteMapArcGISSupport.setPopupPanelSync(mapView);
                     domClass.remove(document.body, "app-loading");
 
-                    require([
-                        "esri/widgets/BasemapGallery",
-                        "dojo/domReady!"
-                    ], 
-                    BasemapGallery => new BasemapGallery({
-                        container: "basemapGalleryDiv",
-                        view: self.state.mapView
-                    }));
+                    if(config.hasTool('basemap'))
+                    {
+                        require([
+                            "esri/widgets/BasemapGallery",
+                            "dojo/domReady!"
+                        ], 
+                        BasemapGallery => new BasemapGallery({
+                            container: "basemapGalleryDiv",
+                            view: mv
+                        }));
+                    }
 
-                    require([
-                        "esri/widgets/Legend",
-                        "dojo/query",
-                        "dojo/dom-attr",
-                        "dojo/dom-style",
-                        "dojo/domReady!"
-                    ], 
-                    (Legend, query, domAttr, domStyle) => {
-                        const legend = new Legend({
-                            container: "legendDiv",
-                            view: self.state.mapView
-                        });
+                    if(config.hasTool('legend'))
+                    {
+                        require([
+                            "esri/widgets/Legend",
+                            "dojo/query",
+                            "dojo/dom-attr",
+                            "dojo/dom-style",
+                            "dojo/domReady!"
+                        ], 
+                        (Legend, query, domAttr, domStyle) => {
+                            const legend = new Legend({
+                                container: "legendDiv",
+                                view: mv
+                            });
 
-                        const legendNode = dojo.byId("legendDiv");
-                        if (legendNode) {
-                            new MutationObserver(function(mutations) {
-                                mutations.forEach(function(mutation) {
-                                    if (
-                                        mutation.addedNodes &&
-                                        mutation.addedNodes.length >= 1
-                                    ) {
-                                        for (
-                                            var i = 0;
-                                            i < mutation.addedNodes.length;
-                                            i++
+                            const legendNode = dojo.byId("legendDiv");
+                            if (legendNode) {
+                                new MutationObserver(function(mutations) {
+                                    mutations.forEach(function(mutation) {
+                                        if (
+                                            mutation.addedNodes &&
+                                            mutation.addedNodes.length >= 1
                                         ) {
-                                            var node = mutation.addedNodes[i];
-                                            if (domStyle.get(node, "display") !== "none") {
-                                                const serviceLabels = query(
-                                                    ".esri-legend__service-label, .esri-legend__layer-caption, .esri-legend__layer-row"
-                                                );
-                                                // console.log(node, serviceLabels);
-                                                serviceLabels.forEach(label => {
-                                                    domAttr.set(label, "tabindex", 0);
-                                                    domAttr.set(
-                                                        label,
-                                                        "onfocus",
-                                                        'responsiveVoice.speak("' +
-                                                            label.innerText +
-                                                            '")'
+                                            for (
+                                                var i = 0;
+                                                i < mutation.addedNodes.length;
+                                                i++
+                                            ) {
+                                                var node = mutation.addedNodes[i];
+                                                if (domStyle.get(node, "display") !== "none") {
+                                                    const serviceLabels = query(
+                                                        ".esri-legend__service-label, .esri-legend__layer-caption, .esri-legend__layer-row"
                                                     );
-                                                    // console.log(label)
-                                                });
+                                                    // console.log(node, serviceLabels);
+                                                    serviceLabels.forEach(label => {
+                                                        domAttr.set(label, "tabindex", 0);
+                                                        domAttr.set(
+                                                            label,
+                                                            "onfocus",
+                                                            'responsiveVoice.speak("' +
+                                                                label.innerText +
+                                                                '")'
+                                                        );
+                                                        // console.log(label)
+                                                    });
+                                                }
                                             }
                                         }
-                                    }
+                                    });
+                                }).observe(legendNode, {
+                                    attributes: true,
+                                    childList: true,
+                                    characterData: false
                                 });
-                            }).observe(legendNode, {
-                                attributes: true,
-                                childList: true,
-                                characterData: false
-                            });
-                        }
-                    });
-
-                    require([
-                        "esri/widgets/LayerList",
-                        "dojo/query",
-                        "dojo/dom-attr",
-                        "dojo/domReady!"
-                    ], 
-                    (LayerList, query, domAttr) => {
-                        const layerList = new LayerList({
-                            container: "layersDiv",
-                            view: self.state.mapView
+                            }
                         });
+                    }
 
-                        const layersNode = dojo.byId("layersDiv");
-                        if (layersNode) {
-                            new MutationObserver(mutations => {
-                                // console.log('mutations', mutations);
-                                const labels = query(".esri-layer-list__item-title");
-                                // console.log('labels', labels);
-
-                                labels.forEach(label => {
-                                    domAttr.set(
-                                        label,
-                                        "onfocus",
-                                        'responsiveVoice.speak("' + label.innerText + '")'
-                                    );
-                                    // console.log(label)
-                                });
-                            }).observe(layersNode, {
-                                attributes: false,
-                                childList: true,
-                                characterData: false
+                    if(config.hasTool('layers'))
+                    {
+                        require([
+                            "esri/widgets/LayerList",
+                            "dojo/query",
+                            "dojo/dom-attr",
+                            "dojo/domReady!"
+                        ], 
+                        (LayerList, query, domAttr) => {
+                            const layerList = new LayerList({
+                                container: "layersDiv",
+                                view: mv
                             });
-                        }
-                    });
 
-                    if(self.config.tool_print)
+                            const layersNode = dojo.byId("layersDiv");
+                            if (layersNode) {
+                                new MutationObserver(mutations => {
+                                    // console.log('mutations', mutations);
+                                    const labels = query(".esri-layer-list__item-title");
+                                    // console.log('labels', labels);
+
+                                    labels.forEach(label => {
+                                        domAttr.set(
+                                            label,
+                                            "onfocus",
+                                            'responsiveVoice.speak("' + label.innerText + '")'
+                                        );
+                                        // console.log(label)
+                                    });
+                                }).observe(layersNode, {
+                                    attributes: false,
+                                    childList: true,
+                                    characterData: false
+                                });
+                            }
+                        });
+                    }
+
+                    if(config.hasTool('print'))
                     {
                         require([
                             "esri/widgets/Print", 
@@ -201,37 +210,39 @@ class RMap extends React.Component {
                         ], 
                         Print => new Print({
                             container: "printDiv",
-                            view: self.state.mapView,
+                            view: mv,
                             printServiceUrl:
                                 "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
                         }));
                     }
                     
-                    require([
-                        "esri/widgets/Search",
-                        "calcite-maps/calcitemaps-arcgis-support-v0.5",
-                        "dojo/domReady!"
-                    ], function(Search, CalciteMapArcGISSupport) {
-                        const searchWidget = new Search({
-                            container: "searchWidgetDiv",
-                            view: self.state.mapView,
-                            locationEnabled: true
+                    if(config.hasTool('search'))
+                    {
+                        require([
+                            "esri/widgets/Search",
+                            "calcite-maps/calcitemaps-arcgis-support-v0.5",
+                            "dojo/domReady!"
+                        ], function(Search, CalciteMapArcGISSupport) {
+                            const searchWidget = new Search({
+                                container: "searchWidgetDiv",
+                                view: mv,
+                                locationEnabled: true
+                            });
+                            CalciteMapArcGISSupport.setSearchExpandEvents(searchWidget);
+                            searchWidget.on("search-focus", function(ev) {
+                                // console.log('search focus', ev, searchWidget);
+                                responsiveVoice.speak(ev.target.allPlaceholder);
+                            });
+                            searchWidget.on("search-start", function(ev) {
+                                // console.log("Search started", ev);
+                                responsiveVoice.speak("Search");
+                            });
+                            searchWidget.on("search-complete", function(ev) {
+                                // console.log('Search complete', ev, searchWidget);
+                                responsiveVoice.speak(ev.results[0].results[0].name);
+                            });
                         });
-                        CalciteMapArcGISSupport.setSearchExpandEvents(searchWidget);
-                        searchWidget.on("search-focus", function(ev) {
-                            // console.log('search focus', ev, searchWidget);
-                            responsiveVoice.speak(ev.target.allPlaceholder);
-                        });
-                        searchWidget.on("search-start", function(ev) {
-                            // console.log("Search started", ev);
-                            responsiveVoice.speak("Search");
-                        });
-                        searchWidget.on("search-complete", function(ev) {
-                            // console.log('Search complete', ev, searchWidget);
-                            responsiveVoice.speak(ev.results[0].results[0].name);
-                        });
-                    });
-
+                    }
 
                     require([
                         "esri/widgets/BasemapToggle", 
@@ -239,23 +250,20 @@ class RMap extends React.Component {
                     ], 
                     BasemapToggle => {
                          const basemapToggle = new BasemapToggle({
-                            view: mapView,
+                            view: mv,
                             secondBasemap: "satellite"
                         });
-                        mapView.ui.add(basemapToggle, "bottom-right");
+                        mv.ui.add(basemapToggle, "bottom-right");
                     });
 
-                    if(self.config.scalebar)
+                    if(config.scalebar)
                     {
                         require([
                             "esri/widgets/ScaleBar", 
                             "dojo/domReady!"
                         ], 
                         ScaleBar => {
-                            const scaleBar = new ScaleBar({
-                                view: mapView
-                            });
-                            mapView.ui.add(scaleBar, "bottom-left");
+                            mv.ui.add(new ScaleBar({view: mv}), "bottom-left");
                         });
                     }
                 });
