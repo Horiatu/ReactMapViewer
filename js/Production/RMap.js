@@ -42,7 +42,7 @@ class RMap extends React.Component {
             appId: this.props.appId,//"b54efa235b7f455f91b14396090ad3e3",
             portalUrl: this.props.portalUrl,//"https://www.arcgis.com",
             voice: false
-        }).state.promise.then((config) => {
+        }).then((config) => {
             this.config = config;
             require([
                 "dojo/dom-class",
