@@ -39,10 +39,10 @@ class RMap extends React.Component {
         const self = this;
 
         new AppConfig({
-            appId: this.props.appId,//"b54efa235b7f455f91b14396090ad3e3",
-            portalUrl: this.props.portalUrl,//"https://www.arcgis.com",
+            appId: this.props.appId,
+            portalUrl: this.props.portalUrl,
             voice: false
-        }).then((config) => {
+        }).then(config => {
             this.config = config;
             require([
                 "dojo/dom-class",
@@ -75,22 +75,14 @@ class RMap extends React.Component {
                     }
                 });
 
-                const mapView = new MapView({
+                new MapView({
                     container: "mapViewDiv",
                     map: map,
                     padding: {
                         top: 50,
                         // bottom: 0
                     }
-                });
-
-                // Popup and panel sync
-                mapView.when(function(mv) {
-                    self.setState({
-                        map: map,
-                        mapView: mv
-                    });
-
+                }).when(function(mapView) {
                     CalciteMapArcGISSupport.setPopupPanelSync(mapView);
                     domClass.remove(document.body, "app-loading");
 
@@ -102,7 +94,7 @@ class RMap extends React.Component {
                         ], 
                         BasemapGallery => new BasemapGallery({
                             container: "basemapGalleryDiv",
-                            view: mv
+                            view: mapView
                         }));
                     }
 
@@ -118,7 +110,7 @@ class RMap extends React.Component {
                         (Legend, query, domAttr, domStyle) => {
                             const legend = new Legend({
                                 container: "legendDiv",
-                                view: mv
+                                view: mapView
                             });
 
                             const legendNode = dojo.byId("legendDiv");
@@ -175,7 +167,7 @@ class RMap extends React.Component {
                         (LayerList, query, domAttr) => {
                             const layerList = new LayerList({
                                 container: "layersDiv",
-                                view: mv
+                                view: mapView
                             });
 
                             const layersNode = dojo.byId("layersDiv");
@@ -210,7 +202,7 @@ class RMap extends React.Component {
                         ], 
                         Print => new Print({
                             container: "printDiv",
-                            view: mv,
+                            view: mapView,
                             printServiceUrl:
                                 "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
                         }));
@@ -225,7 +217,7 @@ class RMap extends React.Component {
                         ], function(Search, CalciteMapArcGISSupport) {
                             const searchWidget = new Search({
                                 container: "searchWidgetDiv",
-                                view: mv,
+                                view: mapView,
                                 locationEnabled: true
                             });
                             CalciteMapArcGISSupport.setSearchExpandEvents(searchWidget);
@@ -250,10 +242,10 @@ class RMap extends React.Component {
                     ], 
                     BasemapToggle => {
                          const basemapToggle = new BasemapToggle({
-                            view: mv,
+                            view: mapView,
                             secondBasemap: "satellite"
                         });
-                        mv.ui.add(basemapToggle, "bottom-right");
+                        mapView.ui.add(basemapToggle, "bottom-right");
                     });
 
                     if(config.scalebar)
@@ -263,7 +255,7 @@ class RMap extends React.Component {
                             "dojo/domReady!"
                         ], 
                         ScaleBar => {
-                            mv.ui.add(new ScaleBar({view: mv}), "bottom-left");
+                            mapView.ui.add(new ScaleBar({view: mapView}), "bottom-left");
                         });
                     }
                 });
@@ -278,7 +270,7 @@ class RMap extends React.Component {
                 }
             });
         },
-        (error) => {
+        error => {
             console.log('Error reading configuration', error);
         }
     )}
