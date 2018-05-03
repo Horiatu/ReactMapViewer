@@ -1,6 +1,6 @@
 class NavBar extends React.Component {
     render() {
-        console.log('NAVBAR', this);
+        // console.log('NAVBAR', this);
         return React.createElement(
             "nav",
             {

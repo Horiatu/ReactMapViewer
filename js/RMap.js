@@ -88,7 +88,7 @@ class RMap extends React.Component {
             });
 
             // Popup and panel sync
-            mapView.then(function() {
+            mapView.when(function() {
                 CalciteMapArcGISSupport.setPopupPanelSync(mapView);
                 domClass.remove(document.body, "app-loading");
             });

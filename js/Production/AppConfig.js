@@ -5,7 +5,7 @@ class AppConfig extends React.Component {
 	    const self = this;
 
 	    this.state = {
-	        promise: new RSVP.Promise((resolve, reject) => {
+	        promise: new Promise((resolve, reject) => {
 			    require(["esri/portal/PortalItem"], 
 				function(PortalItem) { 
 					new PortalItem({

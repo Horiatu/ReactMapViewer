@@ -101,7 +101,7 @@ class RMap extends React.Component {
                 });
 
                 // Popup and panel sync
-                mapView.then(function() {
+                mapView.when(function() {
                     self.setState({
                         map: map,
                         mapView: mapView
@@ -242,7 +242,7 @@ class RMap extends React.Component {
                         responsiveVoice.speak(ev.currentTarget.innerText);
                     });
                 } else {
-                    responsiveVoice = { speak: function(text) { console.log('"'+text+'" (muted)');} };
+                responsiveVoice = { speak: function(text) { /*console.log('"'+text+'" (muted)');*/} };
                 }
             });
         },
