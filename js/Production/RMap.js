@@ -36,14 +36,14 @@ class RMap extends React.Component {
             map: null,
             mapView: null
         };
-        const self = this;
+        // const self = this;
 
         new AppConfig({
             appId: this.props.appId,
             portalUrl: this.props.portalUrl,
             voice: false
         }).then(config => {
-            this.config = config;
+            // this.config = config;
             require([
                 "dojo/dom-class",
                 // ArcGIS
@@ -69,15 +69,20 @@ class RMap extends React.Component {
                 CalciteMapArcGISSupport) 
             {
                 // console.log('promise response', config);
-                const map = new WebMap({
-                    portalItem: {
-                        id: config.webmap 
-                    }
-                });
+                
+                // const map = new WebMap({
+                //     portalItem: {
+                //         id: config.webmap 
+                //     }
+                // });
 
-                new MapView({
+                MapView({
                     container: "mapViewDiv",
-                    map: map,
+                    map: WebMap({
+                            portalItem: {
+                                id: config.webmap 
+                            }
+                        }),
                     padding: {
                         top: 50,
                         // bottom: 0

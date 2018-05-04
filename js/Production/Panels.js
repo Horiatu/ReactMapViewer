@@ -87,6 +87,9 @@ class PanelBasemaps extends Panel {
             }
         );
     }
+    constructor(props) {
+        super(props);
+    }
 }
 
 class PanelPrint extends Panel {
