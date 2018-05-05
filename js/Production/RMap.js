@@ -10,6 +10,7 @@ class RMap extends React.Component {
                 React.createElement(
                     "div",
                     {
+                        id: 'Panels',
                         className:
                             "calcite-panels calcite-panels-right calcite-text-light calcite-bg-dark panel-group"
                     },
@@ -44,6 +45,7 @@ class RMap extends React.Component {
             voice: false
         }).then(config => {
             // this.config = config;
+            console.log('config', config);
             require([
                 "dojo/dom-class",
                 // ArcGIS
@@ -91,7 +93,7 @@ class RMap extends React.Component {
                     CalciteMapArcGISSupport.setPopupPanelSync(mapView);
                     domClass.remove(document.body, "app-loading");
 
-                    if(config.hasTool('basemap'))
+                    if(AppConfig.hasTool(config,'basemap'))
                     {
                         require([
                             "esri/widgets/BasemapGallery",
@@ -103,7 +105,7 @@ class RMap extends React.Component {
                         }));
                     }
 
-                    if(config.hasTool('legend'))
+                    if(AppConfig.hasTool(config,'legend'))
                     {
                         require([
                             "esri/widgets/Legend",
@@ -161,7 +163,7 @@ class RMap extends React.Component {
                         });
                     }
 
-                    if(config.hasTool('layers'))
+                    if(AppConfig.hasTool(config,'layers'))
                     {
                         require([
                             "esri/widgets/LayerList",
@@ -199,7 +201,7 @@ class RMap extends React.Component {
                         });
                     }
 
-                    if(config.hasTool('print'))
+                    if(AppConfig.hasTool(config,'print'))
                     {
                         require([
                             "esri/widgets/Print", 
@@ -213,7 +215,7 @@ class RMap extends React.Component {
                         }));
                     }
                     
-                    if(config.hasTool('search'))
+                    if(AppConfig.hasTool(config,'search'))
                     {
                         require([
                             "esri/widgets/Search",
