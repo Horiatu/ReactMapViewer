@@ -62,20 +62,36 @@ class PanelAbout extends Panel {
 
 class PanelBasemaps extends Panel {
     render() {
-        return super.renderContent("Basemaps", function() {
-            return <div id="basemapGalleryDiv" />;
-        });
+        return super.renderContent(
+            "Basemaps", 
+            function() {
+                return <div  id="basemapGalleryDiv"/>;
+            }
+        );
     }
-    componentDidMount() {
-        const self = this;
-        require([
-            "esri/widgets/BasemapGallery",
-            "dojo/domReady!"
-        ], BasemapGallery =>
-            new BasemapGallery({
-                container: "basemapGalleryDiv",
-                view: self.props.mapView
-            }));
+}
+
+class PanelLegend extends Panel {
+    render() {
+        return super.renderContent(
+            "Legend",
+            function() {
+                return <div id="legendDiv"/>;
+            },
+            "glyphicon-list-alt"
+        );
+    }
+}
+
+class PanelLayers extends Panel {
+    render() {
+        return super.renderContent(
+            "Layers",
+            function() {
+                return <div id="layersDiv"/>;
+            },
+            "glyphicon-list"
+        );
     }
 }
 
@@ -84,19 +100,50 @@ class PanelPrint extends Panel {
         return super.renderContent(
             "Print",
             function() {
-                return <div id="printDiv" />;
+                return <div id="printDiv"/>;
             },
             "glyphicon-print"
         );
     }
-    componentDidMount() {
-        const self = this;
-        require(["esri/widgets/Print", "dojo/domReady!"], Print =>
-            new Print({
-                container: "printDiv",
-                view: self.props.mapView,
-                printServiceUrl:
-                    "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
-            }));
-    }
 }
+
+// class PanelBasemaps extends Panel {
+//     render() {
+//         return super.renderContent("Basemaps", function() {
+//             return <div id="basemapGalleryDiv" />;
+//         });
+//     }
+//     componentDidMount() {
+//         const self = this;
+//         require([
+//             "esri/widgets/BasemapGallery",
+//             "dojo/domReady!"
+//         ], BasemapGallery =>
+//             new BasemapGallery({
+//                 container: "basemapGalleryDiv",
+//                 view: self.props.mapView
+//             }));
+//     }
+// }
+
+// class PanelPrint extends Panel {
+//     render() {
+//         return super.renderContent(
+//             "Print",
+//             function() {
+//                 return <div id="printDiv" />;
+//             },
+//             "glyphicon-print"
+//         );
+//     }
+//     componentDidMount() {
+//         const self = this;
+//         require(["esri/widgets/Print", "dojo/domReady!"], Print =>
+//             new Print({
+//                 container: "printDiv",
+//                 view: self.props.mapView,
+//                 printServiceUrl:
+//                     "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+//             }));
+//     }
+// }

@@ -30,7 +30,7 @@ class PanelAdvancedMenu extends Panel {
 						</div>
 						<div className="clearfix" />
 						<div className="bottom">
-							<ul className="details">
+							<ul className="advanceMenu">
 								<li
 									tabIndex="0"
 									onFocus={() =>
