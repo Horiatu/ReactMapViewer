@@ -1,52 +1,51 @@
-// https://github.com/GoogleChrome/samples/blob/gh-pages/service-worker/prefetch/service-worker.js
+ https://github.com/GoogleChrome/samples/blob/gh-pages/service-worker/prefetch/service-worker.js
 
-const CACHE_VERSION = 1;
-const CACHES = {
+var CACHE_VERSION = 1;
+var CACHES = {
     prefetch: "ReactMapViewer-cache-v" + CACHE_VERSION,
     offline: "ReactMapViewer-offline-v" + CACHE_VERSION
 };
 
-// self.addEventListener("install", event => {
-//     const now = Date.now();
+self.addEventListener("install", event => {
+    const now = Date.now();
 
-//     const urlsToCache = [
-//         "./",
-//         "./index.html",
-//         "./offline.html",
-//         "./images/logo.png",
-//         "./images/flag.CA.22.png",
-//         "./images/flag.US.22.png",
-//         "./images/flag.FR.22.png",
-//         "./css/styles.css",
-//         "./css/main.css",
-//         "./css/jquery-ui.min.css",
+    const urlsToCache = [
+        "./",
+        "./index.html",
+        "./offline.html",
+        "./images/logo.png",
+        "./images/flag.CA.22.png",
+        "./images/flag.US.22.png",
+        "./images/flag.FR.22.png",
+        "./css/styles.css",
+        "./css/main.css",
+        "./css/jquery-ui.min.css",
 
-//         "./lib/responsivevoice.js",
-//         "./lib/jquery-1.12.4.min.js",
-//         "./lib/jquery-ui.min.js",
-//         "./lib/arcgis.dojo-4.6.js",
-//         // './lib/self',
-//         "./lib/worker.js",
-//         "./lib/react.development.js",
-//         "./lib/dojo/nls/dojo_ROOT.js",
+        "./lib/responsivevoice.js",
+        "./lib/jquery-1.12.4.min.js",
+        "./lib/jquery-ui.min.js",
+        "./lib/arcgis.dojo-4.7.min.js",
+        // './lib/self',
+        "./lib/worker.js",
+        "./lib/react.development.js",
+        "./lib/dojo/nls/dojo_ROOT.js",
 
-//         "./js/Production/RMap.js",
-//         "./js/Production/NavMenu.js",
-//         "./js/Production/NavBar.js",
-//         "./js/Production/Panels.js",
-//         "./js/Production/PanelLegend.js",
-//         "./js/Production/PanelLayers.js",
-//         "./js/Production/PanelAdvancedMenu.js",
-//         "./js/Production/Help.js",
-//         "./js/Production/Layout.js",
-//         "./lib/react-dom.development.js",
-//         // '//js.arcgis.com/4.6/esri/themes/base/icons/fonts/CalciteWebCoreIcons.ttf?cu4poq',
-//         // 'https://www.arcgis.com/sharing/rest/portals/self?f=json&culture=en',
-//         "./fonts/Avenir_Next_W00_400.woff2",
-//         "./fonts/glyphicons-halflings-regular.woff2",
-//         "./fonts/CalciteWebCoreIcons.ttf"
-//         // '//unpkg.com/babel-standalone@6.15.0/babel.min.js',
-//     ];
+        "./js/RMap.js",
+        "./js/NavMenu.js",
+        "./js/NavBar.js",
+        "./js/Panels.js",
+        "./js/PanelLegend.js",
+        "./js/PanelLayers.js",
+        "./js/PanelAdvancedMenu.js",
+        "./js/Help.js",
+        "./lib/react-dom.development.js",
+        // '//js.arcgis.com/4.6/esri/themes/base/icons/fonts/CalciteWebCoreIcons.ttf?cu4poq',
+        // 'https://www.arcgis.com/sharing/rest/portals/self?f=json&culture=en',
+        "./fonts/Avenir_Next_W00_400.woff2",
+        "./fonts/glyphicons-halflings-regular.woff2",
+        "./fonts/CalciteWebCoreIcons.ttf"
+        // '//unpkg.com/babel-standalone@6.15.0/babel.min.js',
+    ];
 
 //     event.waitUntil(
 //         caches
@@ -148,4 +147,4 @@ const CACHES = {
 //                 });
 //         })
 //     );
-// });
+});
