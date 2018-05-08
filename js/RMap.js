@@ -58,7 +58,7 @@ class RMap extends ErrorBoundary {
                     config: config,
                 });
 
-                console.log('config', config);
+                // console.log('config', config);
                 require([
                     "dojo/dom-class",
                     // ArcGIS
