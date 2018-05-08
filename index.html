@@ -90,26 +90,25 @@
 
     <script type="text/javascript" src="./js/AppConfig.js"></script>
 
-    <script type="text/javascript" src="./js/Production/Layout.js"></script>
-
     <script type="text/jsx" src="./js/Help.js"></script>
     <script type="text/jsx" src="./js/NavMenu.js"></script>
     <script type="text/jsx" src="./js/NavBar.js"></script>
 
     <script type="text/jsx" src="./js/Panels.js"></script>
     <script type="text/jsx" src="./js/PanelAdvancedMenu.js"></script>
-    <!-- <script type="text/javascript" src="./js/Production/Panels.js"></script> -->
 
-    <script type="text/javascript" src="./js/Production/RMap.js"></script>
+    <script type="text/jsx" src="./js/RMap.js"></script>
+    <!-- <script type="text/javascript" src="./js/Layout.js"></script> -->
+
 </head>
 
 <body class="calcite-maps calcite-nav-top app-loading">
-    <div id="root"></div>
-    <script type="text/javascript">
-        ReactDOM.render(React.createElement(Layout, { 
+    <div id="mapContainer"></div>
+    <script type="text/jsx">
+        ReactDOM.render(React.createElement(RMap, { 
             appId: "b54efa235b7f455f91b14396090ad3e3",
             portalUrl: "https://www.arcgis.com",
-        }), document.getElementById('root'));
+        }), document.getElementById('mapContainer'));
     </script>
 </body>
 
